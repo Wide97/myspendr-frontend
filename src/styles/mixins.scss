@@ -1,0 +1,118 @@
+// ─────────── 📦 Flex & Grid ───────────
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// ─────────── ✂️ Text ───────────
+
+@mixin truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin multiline-truncate($lines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+// ─────────── 🌟 Hover & Interazioni ───────────
+
+@mixin hover-glow($color: #c1ff00) {
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 10px 2px $color;
+  }
+}
+
+@mixin pressable {
+  transition: transform 0.1s ease;
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+@mixin hover-scale($scale: 1.05) {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// ─────────── 🎨 Gradient Text ───────────
+
+@mixin gradient-text($gradient) {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+// ─────────── 💡 Button Style ───────────
+
+@mixin button-style($bg, $hover-bg) {
+  background-color: $bg;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-bg;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+// ─────────── 💠 Skeleton Loading ───────────
+
+@mixin skeleton-loading {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-animation 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-animation {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+// ─────────── 📱 Responsive ───────────
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: 576px) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: 768px) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: 992px) { @content; }
+  }
+}

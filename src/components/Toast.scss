@@ -1,0 +1,50 @@
+@import '../styles/variables.scss';
+
+.toast {
+  position: fixed;
+  bottom: $spacing-xl;
+  right: $spacing-xl;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-body;
+  font-weight: $font-weight-semibold;
+  color: black;
+  box-shadow: $shadow-light;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  z-index: 9999;
+  animation: fadeInUp 0.3s ease;
+
+  &.toast-success {
+    background-color: $color-primary;
+  }
+
+  &.toast-error {
+    background-color: $color-error;
+    color: white;
+  }
+
+  &.toast-info {
+    background-color: $color-accent;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: inherit;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

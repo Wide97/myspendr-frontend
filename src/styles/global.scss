@@ -1,0 +1,95 @@
+@import './variables.scss';
+
+// ─────────── 🔁 Reset base ───────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ─────────── 🧱 Impostazioni globali ───────────
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-body;
+  color: $color-text-main;
+  background-color: $color-bg-body;
+  line-height: $line-height-normal;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// ─────────── 🔗 Link ───────────
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $color-hover;
+  }
+}
+
+// ─────────── 📝 Tipografia ───────────
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-heading;
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+h5 { font-size: $font-size-h5; }
+h6 { font-size: $font-size-h6; }
+
+p {
+  font-family: $font-secondary;
+  font-size: $font-size-body;
+  line-height: $line-height-normal;
+  color: $color-text-main;
+}
+
+small {
+  font-size: $font-size-small;
+  color: $color-text-muted;
+}
+
+// ─────────── 🧪 Classi utili ───────────
+.text-muted    { color: $color-text-muted; }
+.text-center   { text-align: center; }
+.bold          { font-weight: $font-weight-bold; }
+.semibold      { font-weight: $font-weight-semibold; }
+.uppercase     { text-transform: uppercase; }
+
+// ─────────── 🪟 Container ───────────
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// ─────────── ✨ Elementi globali ───────────
+button {
+  font-family: $font-primary;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+// ─────────── 🔄 Modalità tema (future ready) ───────────
+[data-theme="dark"] {
+  background-color: $color-bg-body;
+  color: $color-text-main;
+}

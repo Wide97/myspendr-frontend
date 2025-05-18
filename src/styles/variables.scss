@@ -1,0 +1,89 @@
+// 🎨 Palette colori principale
+
+// Colore principale → verde lime, moderno e visibile
+$color-primary: #c1ff00;
+
+// Colori di background
+$color-bg-body: #121212;            // Sfondo generale (dark)
+$color-bg-surface: #1e1e1e;         // Card / elementi
+$color-bg-alt: #2c2c2c;             // Alternanza (liste, righe)
+
+// Testi
+$color-text-main: #f5f5f5;          // Testo principale (bianco soft)
+$color-text-muted: #999999;         // Testo disattivato
+$color-text-heading: #ffffff;       // Titoli
+
+// Bordo e separatori
+$color-border: #2e2e2e;
+
+// Stati
+$color-success: #28a745;
+$color-error: #dc3545;
+$color-warning: #ffc107;
+
+// Hover e interazione
+$color-hover: lighten($color-primary, 10%);
+$color-accent: #7affc3; // accento leggero (verde acqua)
+
+// Gradienti
+$gradient-primary: linear-gradient(135deg, $color-primary, $color-accent);
+
+// Ombre
+$shadow-light: 0 2px 6px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+// ────────────── 🅰️ Font e Tipografia ──────────────
+
+// Font moderni e tech-finance
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Manrope', sans-serif;
+
+// Dimensioni titoli
+$font-size-h1: 3.2rem;    // Hero / Titoli dashboard
+$font-size-h2: 2.4rem;
+$font-size-h3: 2rem;
+$font-size-h4: 1.6rem;
+$font-size-h5: 1.3rem;
+$font-size-h6: 1.1rem;
+
+// Corpo testo
+$font-size-body: 1rem;
+$font-size-subtext: 0.9rem;
+$font-size-small: 0.8rem;
+$font-size-xs: 0.7rem;
+
+// Grassetti
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Righe e spaziatura testo
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.75;
+
+
+// ────────────── 📏 Spacing System ──────────────
+
+// Spacing (multipli di 4px per scalabilità)
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+$spacing-4xl: 80px;
+$spacing-5xl: 120px;
+
+
+// ────────────── 📦 Layout e forma ──────────────
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 20px;
+$radius-round: 999px;
+
+$container-width: 1200px;
+$container-padding: $spacing-lg;
