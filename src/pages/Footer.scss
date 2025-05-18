@@ -1,0 +1,78 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.footer {
+  background-color: $color-bg-alt;
+  color: $color-text-main;
+  padding: $spacing-3xl $spacing-md $spacing-xl;
+  font-family: $font-secondary;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-xl;
+    flex-wrap: wrap;
+
+    .footer-col {
+      flex: 1;
+      min-width: 220px;
+
+      p {
+        color: $color-text-muted;
+        margin-top: $spacing-sm;
+        font-size: $font-size-small;
+      }
+
+      a {
+        display: block;
+        margin-bottom: $spacing-xs;
+        color: $color-text-muted;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-small;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $color-primary;
+          @include hover-glow($color-primary);
+        }
+      }
+
+      .footer-logo {
+        width: 30%;
+        height: auto;
+        margin-bottom: $spacing-sm;
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: $color-bg-surface;
+        padding: $spacing-xxs $spacing-sm;
+        border-radius: $radius-md;
+        margin-right: $spacing-xs;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-bold;
+        color: $color-primary;
+        box-shadow: $shadow-light;
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: $spacing-xl;
+    font-size: $font-size-small;
+    color: $color-text-muted;
+  }
+}
+
+@include respond-to(sm) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer .footer-col {
+    margin-bottom: $spacing-lg;
+  }
+}

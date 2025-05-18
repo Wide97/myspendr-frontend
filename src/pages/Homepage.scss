@@ -1,0 +1,115 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.homepage {
+  padding-top: $spacing-xl;
+  color: $color-text-main;
+  background-color: $color-bg-body;
+
+  .hero-section {
+    @include flex-column-center;
+    text-align: center;
+    padding: $spacing-3xl $spacing-md;
+
+    .hero-content {
+      max-width: 700px;
+      margin-bottom: $spacing-xl;
+
+      h1 {
+        font-size: $font-size-h1;
+        color: $color-primary;
+        margin-bottom: $spacing-sm;
+      }
+
+      p {
+        font-size: $font-size-subtext;
+        color: $color-text-muted;
+        margin-bottom: $spacing-md;
+      }
+
+      button {
+        @include hover-glow($color-primary);
+        font-size: 1.2rem;
+      }
+    }
+
+    .hero-image {
+      img {
+        width: 80%;
+        max-width: 400px;
+        border-radius: $radius-lg;
+        box-shadow: $shadow-heavy;
+      }
+    }
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: $spacing-lg;
+    padding: $spacing-2xl $spacing-md;
+    background-color: $color-bg-surface;
+
+    .feature-card {
+      background: $color-bg-alt;
+      padding: $spacing-lg;
+      border-radius: $radius-md;
+      box-shadow: $shadow-light;
+      transition: transform 0.3s ease;
+      text-align: center;
+
+      h3 {
+        color: $color-primary;
+        margin-bottom: $spacing-sm;
+      }
+
+      p {
+        font-size: $font-size-subtext;
+        color: $color-text-muted;
+      }
+
+      &:hover {
+        transform: translateY(-6px);
+        @include hover-glow($color-primary);
+      }
+    }
+  }
+
+  .badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    padding: $spacing-xl $spacing-md;
+
+    .badge {
+      background-color: $color-bg-alt;
+      padding: $spacing-sm $spacing-lg;
+      border-radius: $radius-md;
+      font-weight: $font-weight-semibold;
+      color: $color-primary;
+      box-shadow: $shadow-light;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: $spacing-lg;
+    background-color: $color-bg-surface;
+    border-top: 1px solid $color-border;
+    font-size: $font-size-small;
+
+    .footer-links {
+      margin-top: $spacing-sm;
+
+      a {
+        margin: 0 $spacing-sm;
+        color: $color-text-muted;
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

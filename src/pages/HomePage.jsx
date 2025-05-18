@@ -1,73 +1,57 @@
-import { useState } from "react";
+// src/pages/HomePage.jsx
+import React from "react";
 import Button from "../components/Button";
-import Loader from "../components/Loader";
-import Toast from "../components/Toast"; // 👈 importato
+import "./HomePage.scss";
+import dash from "../assets/dash.png";
+import Navbar from "../pages/Navbar";
+import Footer from "../pages/Footer";
+
+
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState(null); // 👈 stato per toast
-
-  const handleSubmit = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setToast({ message: "Azione completata con successo!", type: "success" });
-
-      // Auto-close dopo 3s
-      setTimeout(() => setToast(null), 3000);
-    }, 1500);
-  };
-
   return (
-    <div className="container" style={{ padding: "40px 20px" }}>
-      <h1>
-        Welcome to <span style={{ color: "#c1ff00" }}>MySpendr</span>
-      </h1>
-      <p className="text-muted" style={{ marginBottom: "2rem" }}>
-        Questa è una demo UI con i tuoi stili personalizzati
-      </p>
+    <>
+    <Navbar />
+    <div className="homepage">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>Prendi il controllo delle tue finanze.</h1>
+          <p>Traccia. Analizza. Risparmia.</p>
+          <Button onClick={() => console.log("Registrazione")}>Inizia ora</Button>
+        </div>
+        <div className="hero-image">
+          <img src={dash} alt="MySpendr Dash" className="dash" />
+        </div>
+      </section>
 
-      <div
-        style={{
-          background: "#1e1e1e",
-          borderRadius: "12px",
-          padding: "24px",
-          boxShadow: "0 0 20px rgba(0,0,0,0.2)",
-          marginBottom: "40px",
-        }}
-      >
-        <h3 style={{ marginBottom: "16px" }}>Simulazione Azione</h3>
-        <Button onClick={handleSubmit}>Esegui</Button>
-        {loading && <Loader />}
-      </div>
+      {/* Feature Section */}
+      <section className="features">
+        <div className="feature-card">
+          <h3>Spese Giorno per Giorno</h3>
+          <p>Registra ogni spesa in pochi secondi con categorie intuitive.</p>
+        </div>
+        <div className="feature-card">
+          <h3>Dashboard con grafici chiari</h3>
+          <p>Analizza l'andamento delle spese in tempo reale.</p>
+        </div>
+        <div className="feature-card">
+          <h3>Ricevute allegate in un click</h3>
+          <p>Scatta una foto e conserva tutto digitalmente.</p>
+        </div>
+      </section>
 
-      <h4 style={{ marginBottom: "1rem" }}>Pulsanti Varianti</h4>
-      <Button>Primary</Button>{' '}
-      <Button variant="ghost">Ghost</Button>{' '}
-      <Button variant="danger">Danger</Button>
-
-      <div
-        className="text-muted"
-        style={{
-          marginTop: "3rem",
-          fontSize: "0.9rem",
-          borderTop: "1px solid #333",
-          paddingTop: "1rem",
-        }}
-      >
-        MySpendr UI Test — Versione base
-      </div>
-
-      {/* TOAST visibile solo se presente */}
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
+      {/* Badge Section */}
+      <section className="badges">
+        <div className="badge">1000+ utenti soddisfatti</div>
+        <div className="badge">Dati sicuri</div>
+        <div className="badge">Design responsive</div>
+      </section>
+      <Footer />
     </div>
+    </>
   );
 };
+
 
 export default HomePage;
