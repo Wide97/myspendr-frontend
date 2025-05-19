@@ -80,6 +80,17 @@ const CapitaleMovimentoPage = () => {
       <UserNavbar />
       <div className="capitale-movimento-page">
         <h2>Gestione Capitale</h2>
+        <div className="capitale-valori">
+          <p>💳 Conto Bancario: {capitale.contoBancario}€</p>
+          <p>💵 Liquidità: {capitale.liquidita}€</p>
+          <p>🔐 Altri Fondi: {capitale.altriFondi}€</p>
+          <p>📊 Totale: {capitale.totale ?? (
+            parseFloat(capitale.contoBancario || 0) +
+            parseFloat(capitale.liquidita || 0) +
+            parseFloat(capitale.altriFondi || 0)
+          )}€</p>
+        </div>
+
         <div className="form capitale-form">
           <input
             type="number"
