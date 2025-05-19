@@ -138,16 +138,15 @@ const CapitaleMovimentoPage = () => {
             <option value="TRASPORTI">Trasporti</option>
             <option value="AFFITTO">Affitto</option>
             <option value="SHOPPING">Shopping</option>
-            <option value="SIGARETTE">Altro</option>
-            <option value="STIPENDIO">Altro</option>
-            <option value="TORNEI">Altro</option>
-            <option value="SERATE">Altro</option>
-            <option value="DIVERTIMENTO">Altro</option>
-            <option value="BEAUTY">Altro</option>
-            <option value="SALUTE">Altro</option>
-            <option value="INVESTIMENTI">Altro</option>
+            <option value="SIGARETTE">Sigarette</option>
+            <option value="STIPENDIO">Stipendio</option>
+            <option value="TORNEI">Tornei</option>
+            <option value="SERATE">Serate</option>
+            <option value="DIVERTIMENTO">Divertimento</option>
+            <option value="BEAUTY">Beauty</option>
+            <option value="SALUTE">Salute</option>
+            <option value="INVESTIMENTI">Investimenti</option>
             <option value="ALTRO">Altro</option>
-
           </select>
 
           <input
