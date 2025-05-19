@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import "./HomePage.scss";
+import "./Homepage.scss";
 import dash from "../assets/dash.png";
 import Navbar from "../pages/Navbar";
 
