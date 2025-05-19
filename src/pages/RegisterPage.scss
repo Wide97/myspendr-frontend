@@ -1,0 +1,121 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.register-page {
+  background-color: $color-bg-body;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+
+  .register-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: $color-bg-surface;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-heavy;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+    }
+
+    .image-section {
+      background-color: $color-bg-alt;
+      padding: $spacing-lg;
+      display: none;
+
+      @include respond-to(md) {
+        display: block;
+        text-align: center;
+        img {
+          max-width: 80%;
+        }
+      }
+
+      @media (min-width: 769px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 100%;
+          max-width: 400px;
+        }
+      }
+    }
+
+    .form-section {
+      padding: $spacing-2xl;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h1 {
+        color: $color-text-heading;
+        font-size: $font-size-h2;
+        margin-bottom: $spacing-sm;
+
+        .gradient-text {
+          @include gradient-text($gradient-primary);
+        }
+      }
+
+      .subtitle {
+        color: $color-text-muted;
+        margin-bottom: $spacing-xl;
+      }
+
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            color: $color-text-main;
+            margin-bottom: $spacing-xs;
+          }
+
+          .input-icon {
+            display: flex;
+            align-items: center;
+            background-color: $color-bg-alt;
+            border-radius: $radius-md;
+            padding: $spacing-sm;
+
+            i {
+              color: $color-primary;
+              margin-right: $spacing-sm;
+            }
+
+            input {
+              background: transparent;
+              border: none;
+              outline: none;
+              width: 100%;
+              color: $color-text-main;
+              font-size: $font-size-body;
+
+              &::placeholder {
+                color: $color-text-muted;
+              }
+            }
+          }
+        }
+
+        button {
+          @include button-style($color-primary, $color-hover);
+          width: 100%;
+          margin-top: $spacing-lg;
+        }
+      }
+    }
+  }
+}

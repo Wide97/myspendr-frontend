@@ -1,0 +1,16 @@
+@import "../styles/variables.scss";
+
+.profilo-page {
+  padding: $spacing-xl 0;
+
+  h2 {
+    font-size: $font-size-h2;
+    margin-bottom: $spacing-md;
+    color: $color-primary;
+  }
+
+  p {
+    font-size: $font-size-body;
+    color: $color-text-muted;
+  }
+}

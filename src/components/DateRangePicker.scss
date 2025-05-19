@@ -1,0 +1,34 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.date-range-picker {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: $spacing-md 0;
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: $font-size-small;
+      color: $color-text-muted;
+      margin-bottom: $spacing-xs;
+    }
+
+    input[type="date"] {
+      background-color: $color-bg-alt;
+      color: $color-text-main;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $radius-sm;
+      border: 1px solid $color-border;
+      font-size: $font-size-body;
+    }
+  }
+
+  button {
+    @include button-style($color-primary, $color-hover);
+    margin-top: $spacing-xs;
+  }
+}

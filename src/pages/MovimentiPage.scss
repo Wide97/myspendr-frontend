@@ -1,0 +1,71 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.movimenti-page {
+  padding: $spacing-5xl !important;
+
+  h2 {
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-h2;
+    text-align: center;
+  }
+
+  .totali-box {
+    display: flex;
+    gap: $spacing-lg;
+    justify-content: center;
+    margin-bottom: $spacing-lg;
+
+    @include respond-to(sm) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .no-movimenti {
+    text-align: center;
+    color: $color-text-muted;
+    font-size: $font-size-body;
+    margin-top: $spacing-lg;
+  }
+
+  .movimenti-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $color-bg-surface;
+    border-radius: $radius-md;
+    overflow: hidden;
+    box-shadow: $shadow-light;
+
+    th,
+    td {
+      padding: $spacing-sm $spacing-md;
+      text-align: left;
+      border-bottom: 1px solid $color-border;
+    }
+
+    th {
+      background-color: $color-bg-alt;
+      color: $color-text-heading;
+      font-weight: $font-weight-semibold;
+    }
+
+    td {
+      color: $color-text-main;
+    }
+
+    .text-green {
+      color: $color-success;
+      font-weight: bold;
+    }
+
+    .text-red {
+      color: $color-error;
+      font-weight: bold;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}

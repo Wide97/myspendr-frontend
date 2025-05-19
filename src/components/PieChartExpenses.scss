@@ -1,0 +1,19 @@
+@import "../styles/variables.scss";
+
+.pie-chart-wrapper {
+  background-color: $color-bg-surface;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-light;
+  margin-top: $spacing-md;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .no-data {
+    text-align: center;
+    color: $color-text-muted;
+    font-size: $font-size-body;
+  }
+}

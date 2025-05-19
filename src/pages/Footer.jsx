@@ -6,13 +6,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="footer">
-      <div className="footer-content container">
+      <div className="footer-content container  text-center">
         <div className="footer-col logo-col">
           <img src={logo} alt="MySpendr Logo" className="footer-logo" />
           <p>La tua spesa, sotto controllo.</p>
         </div>
 
-        <div className="footer-col links-col">
+        <div className="footer-col links-col text-center">
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
           <a href="mailto:contatti@myspendr.it">Contattaci</a>

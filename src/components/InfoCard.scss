@@ -1,0 +1,39 @@
+@import "../styles/variables.scss";
+
+.info-card {
+  background-color: $color-bg-surface;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-light;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  flex: 1;
+
+  &:hover {
+    box-shadow: $shadow-heavy;
+    transform: scale(1.02);
+  }
+
+  .info-icon {
+    font-size: 2.4rem;
+  }
+
+  .info-details {
+    text-align: right;
+
+    .info-label {
+      font-size: $font-size-small;
+      color: $color-text-muted;
+    }
+
+    .info-value {
+      font-size: $font-size-h4;
+      font-weight: $font-weight-bold;
+      color: $color-text-heading;
+    }
+  }
+}
