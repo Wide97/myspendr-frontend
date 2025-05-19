@@ -5,7 +5,6 @@ import Button from "../components/Button";
 import Loader from "../components/Loader";
 import Toast from "../components/Toast";
 import "./ForgotPasswordPage.scss";
-import Footer from "./Footer";
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");

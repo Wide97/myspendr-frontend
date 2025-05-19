@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import "./HomePage.scss";
 import dash from "../assets/dash.png";
 import Navbar from "../pages/Navbar";
-import Footer from "../pages/Footer";
 
 const HomePage = () => {
   const navigate = useNavigate();
