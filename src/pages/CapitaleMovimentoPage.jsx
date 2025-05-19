@@ -24,6 +24,7 @@ const CapitaleMovimentoPage = () => {
     descrizione: "",
     data: "",
     tipo: "ENTRATA",
+    fonte: "",
   });
   const [toast, setToast] = useState(null);
 
@@ -66,6 +67,7 @@ const CapitaleMovimentoPage = () => {
           descrizione: "",
           data: "",
           tipo: "ENTRATA",
+          fonte: "",
         });
       })
       .catch(() =>
@@ -145,7 +147,7 @@ const CapitaleMovimentoPage = () => {
             <option value="SALUTE">Altro</option>
             <option value="INVESTIMENTI">Altro</option>
             <option value="ALTRO">Altro</option>
-          
+
           </select>
 
           <input
@@ -187,7 +189,20 @@ const CapitaleMovimentoPage = () => {
               />
               Uscita
             </label>
+            <select
+              value={movimento.fonte}
+              onChange={(e) =>
+                setMovimento({ ...movimento, fonte: e.target.value })
+              }
+              required
+            >
+              <option value="">Fonte</option>
+              <option value="BANCA">Conto Bancario</option>
+              <option value="CONTANTI">Contanti</option>
+              <option value="ALTRI">Altri Fondi</option>
+            </select>
           </div>
+
           <button className="glow" type="submit">
             Aggiungi Movimento
           </button>
