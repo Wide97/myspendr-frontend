@@ -136,7 +136,16 @@ const CapitaleMovimentoPage = () => {
             <option value="TRASPORTI">Trasporti</option>
             <option value="AFFITTO">Affitto</option>
             <option value="SHOPPING">Shopping</option>
+            <option value="SIGARETTE">Altro</option>
+            <option value="STIPENDIO">Altro</option>
+            <option value="TORNEI">Altro</option>
+            <option value="SERATE">Altro</option>
+            <option value="DIVERTIMENTO">Altro</option>
+            <option value="BEAUTY">Altro</option>
+            <option value="SALUTE">Altro</option>
+            <option value="INVESTIMENTI">Altro</option>
             <option value="ALTRO">Altro</option>
+          
           </select>
 
           <input
