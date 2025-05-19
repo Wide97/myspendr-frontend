@@ -75,7 +75,7 @@ const CapitaleMovimentoPage = () => {
 
   return (
     <>
-      <UserNavbar/>
+      <UserNavbar />
       <div className="capitale-movimento-page">
         <h2>Gestione Capitale</h2>
         <div className="form capitale-form">
@@ -132,12 +132,13 @@ const CapitaleMovimentoPage = () => {
             required
           >
             <option value="">Categoria</option>
-            <option value="Cibo">Cibo</option>
-            <option value="Trasporti">Trasporti</option>
-            <option value="Affitto">Affitto</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Altro">Altro</option>
+            <option value="CIBO">Cibo</option>
+            <option value="TRASPORTI">Trasporti</option>
+            <option value="AFFITTO">Affitto</option>
+            <option value="SHOPPING">Shopping</option>
+            <option value="ALTRO">Altro</option>
           </select>
+
           <input
             type="text"
             placeholder="Descrizione"
