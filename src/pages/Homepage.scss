@@ -5,6 +5,7 @@
   padding-top: $spacing-xl;
   color: $color-text-main;
   background-color: $color-bg-body;
+  width: 100%;
 
   .hero-section {
     @include flex-column-center;
@@ -20,7 +21,7 @@
         color: $color-primary;
         margin-bottom: $spacing-sm;
       }
-      
+
 
       p {
         font-size: $font-size-subtext;
