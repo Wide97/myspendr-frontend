@@ -165,3 +165,18 @@ body::before {
     background-position: 0% 50%;
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: url("/gifs/particelle.gif") center center / cover no-repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  filter: blur(3px);
+}
+
