@@ -24,7 +24,11 @@ const ResetPasswordPage = () => {
 
     setLoading(true);
     try {
-      await resetPassword({ oldPassword, newPassword });
+      await resetPassword({
+        currentPassword: oldPassword,
+        newPassword,
+      });
+
       setToast({
         message: "✅ Password aggiornata con successo",
         type: "success",
