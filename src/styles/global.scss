@@ -141,35 +141,41 @@ button {
 .glow-left,
 .glow-right {
   position: fixed;
-  width: 20vw; 
-  height: 20vw;
+  width: min(30vw, 300px);
+  height: min(30vw, 300px);
   z-index: -1;
-  opacity: 0.15; 
-  filter: blur(4px);
+  opacity: 0.35;
+  filter: blur(12px);
   pointer-events: none;
-  animation: floatGlow 12s ease-in-out infinite alternate;
+  animation: floatCrazy 12s ease-in-out infinite alternate;
 }
 
 .glow-left {
-  top: 40%;
-  left: 5%;
+  top: 35%;
+  left: 0%;
   background: url("/gifs/glow-left.gif") center/contain no-repeat;
 }
 
 .glow-right {
-  top: 40%;
-  right: 5%;
+  top: 35%;
+  right: 0%;
   background: url("/gifs/glow-right.gif") center/contain no-repeat;
 }
 
-@keyframes floatGlow {
+@keyframes floatCrazy {
   0% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+  25% {
+    transform: translateY(-48%) translateX(5vw) scale(1.05);
   }
   50% {
-    transform: translateY(-52%) translateX(2vw); 
+    transform: translateY(-52%) translateX(10vw) scale(1.1);
+  }
+  75% {
+    transform: translateY(-51%) translateX(5vw) scale(1.07);
   }
   100% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(-50%) translateX(0vw) scale(1);
   }
 }
