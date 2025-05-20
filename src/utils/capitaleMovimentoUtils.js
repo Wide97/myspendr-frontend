@@ -41,3 +41,11 @@ export function resetCapitale() {
 export function creaMovimento(data) {
   return apiFetch("/movimenti", "POST", data);
 }
+
+/**
+ * ❌ Elimina il capitale esistente
+ */
+export function deleteCapitale() {
+  return apiFetch("/capitale", "DELETE");
+}
+

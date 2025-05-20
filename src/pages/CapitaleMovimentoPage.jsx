@@ -4,12 +4,11 @@ import {
   createCapitale,
   updateCapitale,
   resetCapitale,
+  deleteCapitale,
   creaMovimento,
 } from "../utils/capitaleMovimentoUtils";
 import Toast from "../components/Toast";
 import "./CapitaleMovimentoPage.scss";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import UserNavbar from "./UserNavbar";
 
 const CapitaleMovimentoPage = () => {
@@ -17,7 +16,9 @@ const CapitaleMovimentoPage = () => {
     contoBancario: "",
     liquidita: "",
     altriFondi: "",
+    totale: 0,
   });
+
   const [movimento, setMovimento] = useState({
     importo: "",
     categoria: "",
@@ -26,6 +27,7 @@ const CapitaleMovimentoPage = () => {
     tipo: "ENTRATA",
     fonte: "",
   });
+
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
@@ -36,24 +38,57 @@ const CapitaleMovimentoPage = () => {
       );
   }, []);
 
-  const handleCapitaleSubmit = () => {
-    const method = capitale?.id ? updateCapitale : createCapitale;
-    method(capitale)
+  const handleCreate = () => {
+    createCapitale(capitale)
       .then(() =>
-        setToast({ message: "Capitale salvato correttamente", type: "success" })
+        setToast({ message: "Capitale creato correttamente", type: "success" })
       )
       .catch(() =>
-        setToast({ message: "Errore nel salvataggio", type: "error" })
+        setToast({ message: "Errore nella creazione", type: "error" })
+      );
+  };
+
+  const handleUpdate = () => {
+    updateCapitale(capitale)
+      .then(() =>
+        setToast({
+          message: "Capitale aggiornato correttamente",
+          type: "success",
+        })
+      )
+      .catch(() =>
+        setToast({ message: "Errore nell’aggiornamento", type: "error" })
       );
   };
 
   const handleReset = () => {
     resetCapitale()
       .then(() =>
-        setCapitale({ contoBancario: 0, liquidita: 0, altriFondi: 0 })
+        setCapitale({
+          contoBancario: 0,
+          liquidita: 0,
+          altriFondi: 0,
+          totale: 0,
+        })
       )
       .then(() => setToast({ message: "Capitale azzerato", type: "success" }))
       .catch(() => setToast({ message: "Errore nel reset", type: "error" }));
+  };
+
+  const handleDelete = () => {
+    deleteCapitale()
+      .then(() => {
+        setCapitale({
+          contoBancario: "",
+          liquidita: "",
+          altriFondi: "",
+          totale: 0,
+        });
+        setToast({ message: "Capitale eliminato", type: "success" });
+      })
+      .catch(() => {
+        setToast({ message: "Errore durante eliminazione", type: "error" });
+      });
   };
 
   const handleMovimentoSubmit = (e) => {
@@ -75,20 +110,30 @@ const CapitaleMovimentoPage = () => {
       );
   };
 
+  const capitaleEsistente =
+    capitale &&
+    (capitale.contoBancario !== "" ||
+      capitale.liquidita !== "" ||
+      capitale.altriFondi !== "");
+
   return (
     <>
       <UserNavbar />
       <div className="capitale-movimento-page">
         <h2>Gestione Capitale</h2>
+
         <div className="capitale-valori">
           <p>💳 Conto Bancario: {capitale.contoBancario}€</p>
           <p>💵 Liquidità: {capitale.liquidita}€</p>
           <p>🔐 Altri Fondi: {capitale.altriFondi}€</p>
-          <p>📊 Totale: {capitale.totale ?? (
-            parseFloat(capitale.contoBancario || 0) +
-            parseFloat(capitale.liquidita || 0) +
-            parseFloat(capitale.altriFondi || 0)
-          )}€</p>
+          <p>
+            📊 Totale:{" "}
+            {capitale.totale ??
+              parseFloat(capitale.contoBancario || 0) +
+                parseFloat(capitale.liquidita || 0) +
+                parseFloat(capitale.altriFondi || 0)}
+            €
+          </p>
         </div>
 
         <div className="form capitale-form">
@@ -116,13 +161,27 @@ const CapitaleMovimentoPage = () => {
               setCapitale({ ...capitale, altriFondi: e.target.value })
             }
           />
-          <div className="buttons">
-            <button className="glow" onClick={handleCapitaleSubmit}>
-              Salva
-            </button>
-            <button className="glow danger" onClick={handleReset}>
-              Reset
-            </button>
+
+          <div className="capitale-buttons">
+            {!capitaleEsistente ? (
+              <div className="block">
+                <button className="glow" onClick={handleCreate}>
+                  Crea Capitale
+                </button>
+                <button className="glow danger" onClick={handleDelete}>
+                  Elimina
+                </button>
+              </div>
+            ) : (
+              <div className="block">
+                <button className="glow" onClick={handleUpdate}>
+                  Aggiorna
+                </button>
+                <button className="glow danger" onClick={handleReset}>
+                  Azzera
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -176,6 +235,7 @@ const CapitaleMovimentoPage = () => {
             }
             required
           />
+
           <div className="tipo-select">
             <label>
               <input
