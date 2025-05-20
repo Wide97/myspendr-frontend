@@ -153,13 +153,13 @@ button {
 .glow-left {
   top: 40%;
   left: 5%;
-  background: url("/gifs/glow-left.png") center/contain no-repeat;
+  background: url("/gifs/glow-left.gif") center/contain no-repeat;
 }
 
 .glow-right {
   top: 40%;
   right: 5%;
-  background: url("/gifs/glow-right.png") center/contain no-repeat;
+  background: url("/gifs/glow-right.gif") center/contain no-repeat;
 }
 
 @keyframes floatGlow {
