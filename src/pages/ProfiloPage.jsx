@@ -46,34 +46,58 @@ const ProfiloPage = () => {
     <div className="profilo-container">
       <h2>👤 Profilo Utente</h2>
       <div className="profilo-section">
-        <p><strong>Email:</strong> {profilo.email}</p>
-        <p><strong>Email verificata:</strong> {profilo.emailConfirmed ? "✅ Sì" : "❌ No"}</p>
+        <p>
+          <strong>Email:</strong> {profilo.email}
+        </p>
+        <p>
+          <strong>Email verificata:</strong>{" "}
+          {profilo.emailConfirmed ? "✅ Sì" : "❌ No"}
+        </p>
         {profilo.ultimoLogin && (
-          <p><strong>Ultimo login:</strong> {new Date(profilo.ultimoLogin).toLocaleString()}</p>
+          <p>
+            <strong>Ultimo login:</strong>{" "}
+            {new Date(profilo.ultimoLogin).toLocaleString()}
+          </p>
         )}
         {profilo.dataRegistrazione && (
-          <p><strong>Registrato il:</strong> {new Date(profilo.dataRegistrazione).toLocaleDateString()}</p>
+          <p>
+            <strong>Registrato il:</strong>{" "}
+            {new Date(profilo.dataRegistrazione).toLocaleDateString()}
+          </p>
         )}
         {!profilo.emailConfirmed && (
-          <p className="warning-text">⚠️ Verifica la tua email per usare tutte le funzionalità.</p>
+          <p className="warning-text">
+            ⚠️ Verifica la tua email per usare tutte le funzionalità.
+          </p>
         )}
       </div>
 
       <h3>💰 Capitale</h3>
       <div className="profilo-section">
-        <p><strong>Conto Bancario:</strong> {capitale.banca.toFixed(2)} €</p>
-        <p><strong>Liquidità:</strong> {capitale.contanti.toFixed(2)} €</p>
-        <p><strong>Altri Fondi:</strong> {capitale.altriFondi.toFixed(2)} €</p>
+        <p>
+          <strong>Conto Bancario:</strong> {(capitale.banca ?? 0).toFixed(2)} €
+        </p>
+        <p>
+          <strong>Liquidità:</strong> {(capitale.contanti ?? 0).toFixed(2)} €
+        </p>
+        <p>
+          <strong>Altri Fondi:</strong> {(capitale.altriFondi ?? 0).toFixed(2)}{" "}
+          €
+        </p>
       </div>
 
       <h3>📊 Statistiche</h3>
       <div className="profilo-section">
-        <p><strong>Entrate totali:</strong> {entrate.toFixed(2)} €</p>
-        <p><strong>Uscite totali:</strong> {uscite.toFixed(2)} €</p>
+        <p>
+          <strong>Entrate totali:</strong> {(entrate ?? 0).toFixed(2)} €
+        </p>
+        <p>
+          <strong>Uscite totali:</strong> {(uscite ?? 0).toFixed(2)} €
+        </p>
       </div>
 
       <div className="profilo-actions">
-        <Button onClick={() => window.location.href = "/reset-password"}>
+        <Button onClick={() => (window.location.href = "/reset-password")}>
           🔐 Cambia Password
         </Button>
       </div>
