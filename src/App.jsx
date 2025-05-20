@@ -15,8 +15,8 @@ function App() {
   return (
     <div className="app">
       {/* Glow FX (sfondo fisso) */}
-      <div className="glow-left"></div>
-      <div className="glow-right"></div>
+      <img src="/gifs/astronauta.png" alt="Astronauta" className="astronaut-float" />
+
 
       {/* Rotte */}
       <Routes>

@@ -138,44 +138,34 @@ button {
   flex-direction: column;
 }
 
-.glow-left,
-.glow-right {
+.astronaut-float {
   position: fixed;
-  width: min(30vw, 300px);
-  height: min(30vw, 300px);
+  bottom: -10%; // parte nascosto in basso
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30vw;
+  max-width: 300px;
   z-index: -1;
-  opacity: 0.35;
-  filter: blur(12px);
   pointer-events: none;
-  animation: floatCrazy 12s ease-in-out infinite alternate;
+  opacity: 0.12;
+  animation: jumpFloat 6s ease-in-out infinite;
 }
 
-.glow-left {
-  top: 35%;
-  left: 0%;
-  background: url("/gifs/glow-left.gif") center/contain no-repeat;
-}
-
-.glow-right {
-  top: 35%;
-  right: 0%;
-  background: url("/gifs/glow-right.gif") center/contain no-repeat;
-}
-
-@keyframes floatCrazy {
+@keyframes jumpFloat {
   0% {
-    transform: translateY(-50%) translateX(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 0.05;
   }
-  25% {
-    transform: translateY(-48%) translateX(5vw) scale(1.05);
+  40% {
+    transform: translateX(-50%) translateY(-100px) scale(1.2);
+    opacity: 0.15;
   }
-  50% {
-    transform: translateY(-52%) translateX(10vw) scale(1.1);
-  }
-  75% {
-    transform: translateY(-51%) translateX(5vw) scale(1.07);
+  70% {
+    transform: translateX(-50%) translateY(-50px) scale(1.1);
+    opacity: 0.1;
   }
   100% {
-    transform: translateY(-50%) translateX(0vw) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 0.05;
   }
 }
