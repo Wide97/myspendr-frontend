@@ -4,7 +4,7 @@ import {
   getCapitale,
   getTotaleEntrate,
   getTotaleUscite,
-} from "../api/profiloApi";
+} from "../utils/profiloApi";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
 import "./ProfiloPage.scss";
