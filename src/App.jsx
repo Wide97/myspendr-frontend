@@ -9,6 +9,7 @@ import MovimentiPage from "./pages/MovimentiPage";
 import Footer from "./pages/Footer";
 import "./styles/global.scss";
 import ProfiloPage from "./pages/ProfiloPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/capitale" element={<CapitaleMovimentoPage />} />
         <Route path="/movimenti" element={<MovimentiPage />} />
         <Route path="/profilo" element={<ProfiloPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
 
       <Footer />
