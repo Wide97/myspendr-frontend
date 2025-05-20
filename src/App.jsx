@@ -14,6 +14,11 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 function App() {
   return (
     <div className="app">
+      {/* Glow FX (sfondo fisso) */}
+      <div className="glow-left"></div>
+      <div className="glow-right"></div>
+
+      {/* Rotte */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
