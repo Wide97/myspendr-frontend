@@ -4,8 +4,8 @@ import {
   getTotaleEntrate,
   getTotaleUscite,
   getTuttiIMovimenti,
+  deleteCapitale
 } from "../utils/capitaleMovimentoUtils";
-import { deleteCapitale } from "../utils/capitaleMovimentoUtils";
 import Toast from "../components/Toast";
 import UserNavbar from "./UserNavbar";
 import "./ProfiloPage.scss";
