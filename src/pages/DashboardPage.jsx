@@ -101,7 +101,11 @@ const DashboardPage = () => {
 
         <section className="dashboard-filter">
           <h2 className="text-center">Filtra per intervallo di date</h2>
-          <DateRangePicker onFilter={handleRangeFilter} />
+
+          <div className="filter-form-wrapper">
+            <DateRangePicker onFilter={handleRangeFilter} />
+          </div>
+
           {filteredMovimenti.length > 0 && (
             <div className="dashboard-movimenti">
               <div>
@@ -117,7 +121,6 @@ const DashboardPage = () => {
             </div>
           )}
         </section>
-
       </div>
     </>
   );

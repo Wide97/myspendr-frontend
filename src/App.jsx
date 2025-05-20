@@ -14,11 +14,18 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 function App() {
   return (
     <div className="app">
-      {/* Glow FX (sfondo fisso) */}
+      {/* 🌌 Sfondo dinamico animato */}
+      <div className="background-animated">
+        <div className="blob blob1"></div>
+        <div className="blob blob2"></div>
+        <div className="blob blob3"></div>
+      </div>
+
+      {/* 🚀 Immagini decorative */}
       <img src="/gifs/astronauta.png" alt="Astronauta" className="astronaut-float" />
       <img src="/gifs/valuta.png" alt="valuta pulse" className="valuta-pulse" />
 
-      {/* Rotte */}
+      {/* 🛣️ Rotte */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
