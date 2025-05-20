@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiUtils";
+import { apiFetch } from "./api";
 
 export async function getProfilo() {
   return await apiFetch("/users/me");
