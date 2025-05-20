@@ -35,8 +35,28 @@ export function forgotPassword(email) {
 /**
  * 🔒 Reset della password (con autenticazione)
  * @param {Object} data - { oldPassword, newPassword }
- * @param {string} token - Token JWT nell’Authorization header
  */
-export function resetPassword(data, token) {
-  return apiFetch("/auth/reset-password", "PUT", data, token);
+export function resetPassword(data) {
+  return apiFetch("/auth/reset-password", "PUT", data);
+}
+
+/**
+ * 👤 Dati del profilo utente loggato
+ */
+export function getUserProfile() {
+  return apiFetch("/users/me", "GET");
+}
+
+/**
+ * ❌ Elimina account utente
+ */
+export function deleteAccount() {
+  return apiFetch("/users/me", "DELETE");
+}
+
+/**
+ * 🚪 Logout locale → cancella il token JWT dal localStorage
+ */
+export function logout() {
+  localStorage.removeItem("jwt");
 }
