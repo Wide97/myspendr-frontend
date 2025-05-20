@@ -16,7 +16,7 @@ function App() {
     <div className="app">
       {/* Glow FX (sfondo fisso) */}
       <img src="/gifs/astronauta.png" alt="Astronauta" className="astronaut-float" />
-
+      <img src="/gifs/valuta.png" alt="valuta pulse" className="valuta-pulse" />
 
       {/* Rotte */}
       <Routes>
