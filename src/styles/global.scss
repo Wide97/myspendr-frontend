@@ -140,8 +140,8 @@ button {
 
 .astronaut-float {
   position: fixed;
-  bottom: -10%; // parte nascosto in basso
-  left: 50%;
+  bottom: 10%; // parte nascosto in basso
+  left: 25%;
   transform: translateX(-50%);
   width: 30vw;
   max-width: 300px;
