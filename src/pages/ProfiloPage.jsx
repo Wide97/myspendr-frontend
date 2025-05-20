@@ -1,80 +1,83 @@
 import React, { useEffect, useState } from "react";
 import {
+  getProfilo,
   getCapitale,
   getTotaleEntrate,
   getTotaleUscite,
-  getTuttiIMovimenti,
-  deleteCapitale
-} from "../utils/capitaleMovimentoUtils";
-import Toast from "../components/Toast";
-import UserNavbar from "./UserNavbar";
+} from "../api/profiloApi";
+import Loader from "../components/Loader";
+import Button from "../components/Button";
 import "./ProfiloPage.scss";
 
 const ProfiloPage = () => {
-  const [user, setUser] = useState({});
-  const [capitale, setCapitale] = useState({});
-  const [movimenti, setMovimenti] = useState([]);
+  const [profilo, setProfilo] = useState(null);
+  const [capitale, setCapitale] = useState(null);
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
-  const [toast, setToast] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/users/me", { headers: { Authorization: localStorage.getItem("token") } })
-      .then(res => res.json())
-      .then(setUser);
-
-    getCapitale().then(setCapitale);
-    getTotaleEntrate().then(setEntrate);
-    getTotaleUscite().then(setUscite);
-    getTuttiIMovimenti().then(setMovimenti);
+    async function fetchData() {
+      try {
+        const [p, c, e, u] = await Promise.all([
+          getProfilo(),
+          getCapitale(),
+          getTotaleEntrate(),
+          getTotaleUscite(),
+        ]);
+        setProfilo(p);
+        setCapitale(c);
+        setEntrate(e);
+        setUscite(u);
+      } catch (error) {
+        console.error("Errore nel caricamento profilo:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
   }, []);
 
-  const handleDelete = () => {
-    if (window.confirm("Sei sicuro di voler eliminare il tuo account?")) {
-      deleteCapitale().then(() => {
-        setToast({ message: "Account eliminato", type: "success" });
-        setTimeout(() => window.location.href = "/login", 1500);
-      });
-    }
-  };
+  if (loading || !profilo || !capitale) {
+    return <Loader />;
+  }
 
   return (
-    <>
-      <UserNavbar />
-      <div className="profilo-page">
-        <h2>👤 Profilo Utente</h2>
-        <div className="card">
-          <p><strong>Nome:</strong> {user.nome}</p>
-          <p><strong>Cognome:</strong> {user.cognome}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Username:</strong> {user.username}</p>
-          <p><strong>Registrato il:</strong> {user.dataRegistrazione}</p>
-          <p><strong>Ultimo accesso:</strong> {user.ultimoAccesso}</p>
-        </div>
-
-        <h2>💸 Preferenze</h2>
-        <div className="card">
-          <p><strong>Valuta:</strong> {user.valuta?.simbolo} ({user.valuta?.codice})</p>
-          <button className="glow">Modifica Password</button>
-        </div>
-
-        <h2>📊 Resoconto Rapido</h2>
-        <div className="card">
-          <p><strong>Totale Movimenti:</strong> {movimenti.length}</p>
-          <p><strong>Entrate mese:</strong> {entrate} €</p>
-          <p><strong>Uscite mese:</strong> {uscite} €</p>
-          <p><strong>Capitale Totale:</strong> {capitale?.totale} €</p>
-        </div>
-
-        <h2>⚙️ Gestione Account</h2>
-        <div className="card danger">
-          <button className="glow" onClick={handleDelete}>Elimina Account</button>
-          <button className="glow" onClick={() => localStorage.clear() || window.location.reload()}>Logout</button>
-        </div>
-
-        {toast && <Toast {...toast} onClose={() => setToast(null)} />}
+    <div className="profilo-container">
+      <h2>👤 Profilo Utente</h2>
+      <div className="profilo-section">
+        <p><strong>Email:</strong> {profilo.email}</p>
+        <p><strong>Email verificata:</strong> {profilo.emailConfirmed ? "✅ Sì" : "❌ No"}</p>
+        {profilo.ultimoLogin && (
+          <p><strong>Ultimo login:</strong> {new Date(profilo.ultimoLogin).toLocaleString()}</p>
+        )}
+        {profilo.dataRegistrazione && (
+          <p><strong>Registrato il:</strong> {new Date(profilo.dataRegistrazione).toLocaleDateString()}</p>
+        )}
+        {!profilo.emailConfirmed && (
+          <p className="warning-text">⚠️ Verifica la tua email per usare tutte le funzionalità.</p>
+        )}
       </div>
-    </>
+
+      <h3>💰 Capitale</h3>
+      <div className="profilo-section">
+        <p><strong>Conto Bancario:</strong> {capitale.banca.toFixed(2)} €</p>
+        <p><strong>Liquidità:</strong> {capitale.contanti.toFixed(2)} €</p>
+        <p><strong>Altri Fondi:</strong> {capitale.altriFondi.toFixed(2)} €</p>
+      </div>
+
+      <h3>📊 Statistiche</h3>
+      <div className="profilo-section">
+        <p><strong>Entrate totali:</strong> {entrate.toFixed(2)} €</p>
+        <p><strong>Uscite totali:</strong> {uscite.toFixed(2)} €</p>
+      </div>
+
+      <div className="profilo-actions">
+        <Button onClick={() => window.location.href = "/reset-password"}>
+          🔐 Cambia Password
+        </Button>
+      </div>
+    </div>
   );
 };
 

@@ -41,39 +41,3 @@ export function resetCapitale() {
 export function creaMovimento(data) {
   return apiFetch("/movimenti", "POST", data);
 }
-
-/**
- * ❌ Elimina il capitale esistente
- */
-export function deleteCapitale() {
-  return apiFetch("/capitale", "DELETE");
-}
-
-
-/**
- * 📈 Calcola il totale delle entrate dal backend
- */
-export async function getTotaleEntrate() {
-  const movimenti = await getTuttiIMovimenti();
-  return movimenti
-    .filter(m => m.tipo === "ENTRATA")
-    .reduce((tot, curr) => tot + curr.importo, 0);
-}
-
-/**
- * 📉 Calcola il totale delle uscite dal backend
- */
-export async function getTotaleUscite() {
-  const movimenti = await getTuttiIMovimenti();
-  return movimenti
-    .filter(m => m.tipo === "USCITA")
-    .reduce((tot, curr) => tot + curr.importo, 0);
-}
-
-/**
- * 🔁 Recupera tutti i movimenti
- */
-export function getTuttiIMovimenti() {
-  return apiFetch("/movimenti", "GET");
-}
-
