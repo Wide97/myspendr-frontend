@@ -12,9 +12,7 @@
   .login-container {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: $color-bg-surface;
     border-radius: $radius-lg;
-    box-shadow: $shadow-heavy;
     overflow: hidden;
     width: 100%;
     max-width: 900px;
@@ -24,7 +22,6 @@
     }
 
     .image-section {
-      background-color: $color-bg-alt;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -111,7 +108,7 @@
 
         button {
           @include button-style($color-primary, $color-hover);
-          width: 100%;
+          width: 30%;
           margin-top: $spacing-lg;
         }
       }

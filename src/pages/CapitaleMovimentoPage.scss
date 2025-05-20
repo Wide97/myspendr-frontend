@@ -11,10 +11,8 @@
   }
 
   .form {
-    background-color: $color-bg-surface;
     padding: $spacing-lg;
     border-radius: $radius-lg;
-    box-shadow: $shadow-light;
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
@@ -83,8 +81,6 @@
   }
 
   .capitale-valori {
-    background-color: $color-bg-alt;
-    border-radius: $radius-lg;
     padding: $spacing-md;
     margin-bottom: $spacing-lg;
     box-shadow: $shadow-light;

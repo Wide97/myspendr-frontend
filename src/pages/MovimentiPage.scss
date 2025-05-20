@@ -33,7 +33,6 @@
   .movimenti-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: $color-bg-surface;
     border-radius: $radius-md;
     overflow: hidden;
     box-shadow: $shadow-light;
@@ -46,7 +45,6 @@
     }
 
     th {
-      background-color: $color-bg-alt;
       color: $color-text-heading;
       font-weight: $font-weight-semibold;
     }

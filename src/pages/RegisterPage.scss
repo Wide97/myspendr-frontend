@@ -12,9 +12,6 @@
   .register-container {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: $color-bg-surface;
-    border-radius: $radius-lg;
-    box-shadow: $shadow-heavy;
     overflow: hidden;
     width: 100%;
     max-width: 1000px;
@@ -24,7 +21,6 @@
     }
 
     .image-section {
-      background-color: $color-bg-alt;
       padding: $spacing-lg;
       display: none;
 
@@ -112,7 +108,7 @@
 
         button {
           @include button-style($color-primary, $color-hover);
-          width: 100%;
+          width: 30%;
           margin-top: $spacing-lg;
         }
       }
