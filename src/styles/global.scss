@@ -148,7 +148,7 @@ button {
   z-index: -1;
   pointer-events: none;
   opacity: 0.12;
-  animation: jumpFloat 6s ease-in-out infinite;
+  animation: jumpFloat 15s ease-in-out infinite;
 }
 
 @keyframes jumpFloat {
