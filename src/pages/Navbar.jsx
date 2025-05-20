@@ -45,7 +45,7 @@ const Navbar = () => {
 
       <nav className={`navbar-links ${isMobileMenuOpen ? "active" : ""}`}>
         <Link to="/">Home</Link>
-        <a href="mailto:contatti@myspendr.it">Contattaci</a>
+        <a href="mailto:myspendr@gmail.com">Contattaci</a>
         <a
           href="https://github.com/Wide97/myspendr-frontend"
           target="_blank"

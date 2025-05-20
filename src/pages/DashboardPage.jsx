@@ -11,8 +11,6 @@ import PieChartExpenses from "../components/PieChartExpenses";
 import DateRangePicker from "../components/DateRangePicker";
 import Loader from "../components/Loader";
 import "./DashboardPage.scss";
-import Navbar from "../pages/Navbar";
-import Footer from "../pages/Footer";
 import UserNavbar from "./UserNavbar";
 
 const DashboardPage = () => {
@@ -53,7 +51,6 @@ const DashboardPage = () => {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         setUsername(payload.sub || "Utente");
-        // eslint-disable-next-line no-unused-vars
       } catch (err) {
         console.warn("Token non valido");
       }
@@ -106,7 +103,7 @@ const DashboardPage = () => {
           <h2>Filtra per intervallo di date</h2>
           <DateRangePicker onFilter={handleRangeFilter} />
           {filteredMovimenti.length > 0 && (
-            <div className="dashboard-movimenti">
+            <div className="dashboard-movimenti text-center">
               <h3>Movimenti nel periodo:</h3>
               <ul>
                 {filteredMovimenti.map((mov) => (

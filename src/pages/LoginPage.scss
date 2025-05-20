@@ -110,6 +110,7 @@
           @include button-style($color-primary, $color-hover);
           width: 30%;
           margin-top: $spacing-lg;
+          align-self: center;
         }
       }
 

@@ -14,8 +14,8 @@ const Footer = () => {
 
         <div className="footer-col links-col text-center">
           <a href="/">Home</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="mailto:contatti@myspendr.it">Contattaci</a>
+          <a href="/register">Registrati ora!</a>
+          <a href="mailto:myspendr@gmail.com">Contattaci</a>
           <a href="https://github.com/Wide97/myspendr-frontend" target="_blank" rel="noreferrer">GitHub</a>
         </div>
 
