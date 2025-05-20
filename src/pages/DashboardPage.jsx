@@ -99,22 +99,25 @@ const DashboardPage = () => {
           <PieChartExpenses movimenti={movimenti} />
         </section>
 
-        <section className="dashboard-filter text-center">
-          <h2>Filtra per intervallo di date</h2>
+        <section className="dashboard-filter">
+          <h2 className="text-center">Filtra per intervallo di date</h2>
           <DateRangePicker onFilter={handleRangeFilter} />
           {filteredMovimenti.length > 0 && (
-            <div className="dashboard-movimenti text-center">
-              <h3>Movimenti nel periodo:</h3>
-              <ul>
-                {filteredMovimenti.map((mov) => (
-                  <li key={mov.id}>
-                    <strong>{mov.categoria}</strong> - {mov.importo}€ ({mov.data})
-                  </li>
-                ))}
-              </ul>
+            <div className="dashboard-movimenti">
+              <div>
+                <h3>Movimenti nel periodo:</h3>
+                <ul>
+                  {filteredMovimenti.map((mov) => (
+                    <li key={mov.id}>
+                      <strong>{mov.categoria}</strong> - {mov.importo}€ ({mov.data})
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           )}
         </section>
+
       </div>
     </>
   );

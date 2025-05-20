@@ -1,5 +1,6 @@
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import "./PieChartExpenses.scss";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -33,7 +34,9 @@ const PieChartExpenses = ({ movimenti }) => {
       {totale === 0 ? (
         <p className="text-center">Nessun dato da visualizzare.</p>
       ) : (
-        <Pie data={data} />
+        <div className="chart-container">
+          <Pie data={data} />
+        </div>
       )}
     </>
   );

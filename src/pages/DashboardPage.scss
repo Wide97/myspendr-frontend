@@ -59,16 +59,22 @@
 
     .dashboard-movimenti {
       margin-top: $spacing-lg;
+      display: flex;
+      justify-content: center;
 
       h3 {
         font-size: $font-size-h5;
         margin-bottom: $spacing-sm;
         color: $color-text-heading;
+        width: 100%;
+        text-align: center;
       }
 
       ul {
         list-style: none;
         padding-left: 0;
+        width: 100%;
+        text-align: left;
 
         li {
           padding: $spacing-sm;
@@ -76,6 +82,7 @@
           border-radius: $radius-md;
           margin-bottom: $spacing-xs;
           color: $color-text-main;
+
 
           strong {
             color: $color-primary;

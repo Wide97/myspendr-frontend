@@ -6,9 +6,11 @@
   max-width: 800px;
   margin: $spacing-2xl auto;
 
-  h2, h3 {
+  h2,
+  h3 {
     color: $color-primary;
     margin-bottom: $spacing-md;
+    text-align: center;
   }
 
   .profilo-section {

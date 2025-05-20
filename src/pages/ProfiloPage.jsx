@@ -48,7 +48,7 @@ const ProfiloPage = () => {
       <UserNavbar />
       <div className="profilo-container">
         <h2>👤 Profilo Utente</h2>
-        <div className="profilo-section">
+        <div className="profilo-section text-center">
           <p>
             <strong>Email:</strong> {profilo.email}
           </p>
@@ -76,7 +76,7 @@ const ProfiloPage = () => {
         </div>
 
         <h3>💰 Capitale</h3>
-        <div className="profilo-section">
+        <div className="profilo-section text-center">
           <p>
             <strong>Conto Bancario:</strong>{" "}
             {(capitale.contoBancario ?? 0).toFixed(2)} €
@@ -91,7 +91,7 @@ const ProfiloPage = () => {
         </div>
 
         <h3>📊 Statistiche</h3>
-        <div className="profilo-section">
+        <div className="profilo-section text-center">
           <p>
             <strong>Entrate totali:</strong> {(entrate ?? 0).toFixed(2)} €
           </p>
