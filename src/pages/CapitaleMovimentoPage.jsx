@@ -119,7 +119,7 @@ const CapitaleMovimentoPage = () => {
   return (
     <>
       <UserNavbar />
-      <div className="capitale-movimento-page">
+      <div className="capitale-movimento-page text-center">
         <h2>Gestione Capitale</h2>
 
         <div className="capitale-valori">

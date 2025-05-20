@@ -1,10 +1,7 @@
 @import "../styles/variables.scss";
 
 .info-card {
-  background-color: $color-bg-surface;
   padding: $spacing-lg;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-light;
   display: flex;
   align-items: center;
   justify-content: space-between;

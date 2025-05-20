@@ -38,6 +38,7 @@ const DashboardPage = () => {
         setEntrate(entrate);
         setUscite(uscite);
         setMovimenti(movimenti);
+        console.log("📊 MOVIMENTI per grafico:", movimenti);
       } catch (error) {
         console.error("Errore nel caricamento dati:", error);
       } finally {
@@ -52,7 +53,7 @@ const DashboardPage = () => {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         setUsername(payload.sub || "Utente");
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (err) {
         console.warn("Token non valido");
       }
@@ -82,42 +83,42 @@ const DashboardPage = () => {
 
   return (
     <>
-    <UserNavbar/>
-    <div className="dashboard container">
-      <header className="dashboard-header">
-        <h1>Ciao, {username} 👋</h1>
-        <p className="data">{today}</p>
-      </header>
+      <UserNavbar />
+      <div className="dashboard container">
+        <header className="dashboard-header">
+          <h1>Ciao, {username} 👋</h1>
+          <p className="data">{today}</p>
+        </header>
 
-      <section className="dashboard-cards">
-        <InfoCard label="Capitale Totale" value={capitaleTotale} icon="💰" />
-        <InfoCard label="Entrate Totali" value={entrate} icon="📈" />
-        <InfoCard label="Uscite Totali" value={uscite} icon="📉" />
-        <InfoCard label="Saldo Netto" value={saldoNetto} icon="🧾" />
-      </section>
+        <section className="dashboard-cards">
+          <InfoCard label="Capitale Totale" value={capitaleTotale} icon="💰" />
+          <InfoCard label="Entrate Totali" value={entrate} icon="📈" />
+          <InfoCard label="Uscite Totali" value={uscite} icon="📉" />
+          <InfoCard label="Saldo Netto" value={saldoNetto} icon="🧾" />
+        </section>
 
-      <section className="dashboard-chart">
-        <h2>Distribuzione Spese</h2>
-        <PieChartExpenses movimenti={movimenti} />
-      </section>
+        <section className="dashboard-chart">
+          <h2>Distribuzione Spese</h2>
+          <PieChartExpenses movimenti={movimenti} />
+        </section>
 
-      <section className="dashboard-filter">
-        <h2>Filtra per intervallo di date</h2>
-        <DateRangePicker onFilter={handleRangeFilter} />
-        {filteredMovimenti.length > 0 && (
-          <div className="dashboard-movimenti">
-            <h3>Movimenti nel periodo:</h3>
-            <ul>
-              {filteredMovimenti.map((mov) => (
-                <li key={mov.id}>
-                  <strong>{mov.categoria}</strong> - {mov.importo}€ ({mov.data})
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
-    </div>
+        <section className="dashboard-filter text-center">
+          <h2>Filtra per intervallo di date</h2>
+          <DateRangePicker onFilter={handleRangeFilter} />
+          {filteredMovimenti.length > 0 && (
+            <div className="dashboard-movimenti">
+              <h3>Movimenti nel periodo:</h3>
+              <ul>
+                {filteredMovimenti.map((mov) => (
+                  <li key={mov.id}>
+                    <strong>{mov.categoria}</strong> - {mov.importo}€ ({mov.data})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      </div>
     </>
   );
 };
