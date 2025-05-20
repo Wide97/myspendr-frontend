@@ -5,7 +5,7 @@ import {
   getTotaleUscite,
   getTuttiIMovimenti,
 } from "../utils/capitaleMovimentoUtils";
-import { deleteCapitale } from "../utils/authApi";
+import { deleteCapitale } from "../utils/capitaleMovimentoUtils";
 import Toast from "../components/Toast";
 import UserNavbar from "./UserNavbar";
 import "./ProfiloPage.scss";
