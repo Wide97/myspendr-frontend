@@ -78,7 +78,7 @@ const MovimentiPage = () => {
           <Loader />
         ) : (
           <>
-            <div className="totali-box text-center">
+            <div className="totali-box">
               <InfoCard label="Totale Entrate" value={entrate} />
               <InfoCard label="Totale Uscite" value={uscite} />
             </div>
@@ -108,7 +108,9 @@ const MovimentiPage = () => {
                         {mov.tipo}
                       </td>
                       <td data-label="Azioni">
-                        <button onClick={() => handleDelete(mov.id)}>Elimina</button>
+                        <Button onClick={() => handleDelete(mov.id)} variant="danger">
+                          Elimina
+                        </Button>
                       </td>
                     </tr>
 
