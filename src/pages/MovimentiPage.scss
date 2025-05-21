@@ -2,7 +2,7 @@
 @import "../styles/mixins.scss";
 
 .movimenti-page {
-  padding: $spacing-5xl !important;
+  padding-top: $spacing-5xl $spacing-xl!important;
   width: 100%;
 
   h2 {
