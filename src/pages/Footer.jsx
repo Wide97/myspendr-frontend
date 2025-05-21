@@ -5,38 +5,30 @@ import logo from "../assets/logo.png";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="footer-wrapper"> {/* ⬅️ wrapper esterno */}
-      <footer className="footer">
-        <div className="footer-content container text-center">
-          <div className="footer-col logo-col">
-            <img src={logo} alt="MySpendr Logo" className="footer-logo" />
-            <p>La tua spesa, sotto controllo.</p>
-          </div>
-
-          <div className="footer-col links-col text-center">
-            <a href="/">Home</a>
-            <a href="/register">Registrati ora!</a>
-            <a href="mailto:myspendr@gmail.com">Contattaci</a>
-            <a
-              href="https://github.com/Wide97/myspendr-frontend"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          </div>
-
-          <div className="footer-col badges-col">
-            <span className="badge">1000+ utenti</span>
-            <span className="badge">Design responsivo</span>
-          </div>
+    <footer className="footer">
+      <div className="footer-content container  text-center">
+        <div className="footer-col logo-col">
+          <img src={logo} alt="MySpendr Logo" className="footer-logo" />
+          <p>La tua spesa, sotto controllo.</p>
         </div>
 
-        <div className="footer-bottom">
-          <small>© {currentYear} MySpendr. Tutti i diritti riservati. — v1.0.0</small>
+        <div className="footer-col links-col text-center">
+          <a href="/">Home</a>
+          <a href="/register">Registrati ora!</a>
+          <a href="mailto:myspendr@gmail.com">Contattaci</a>
+          <a href="https://github.com/Wide97/myspendr-frontend" target="_blank" rel="noreferrer">GitHub</a>
         </div>
-      </footer>
-    </div>
+
+        <div className="footer-col badges-col">
+          <span className="badge">1000+ utenti</span>
+          <span className="badge">Design responsivo</span>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <small>© {currentYear} MySpendr. Tutti i diritti riservati. — v1.0.0</small>
+      </div>
+    </footer>
   );
 };
 
