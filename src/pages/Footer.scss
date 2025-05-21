@@ -1,6 +1,16 @@
 @import '../styles/variables.scss';
 @import '../styles/mixins.scss';
 
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .footer {
+    margin-top: auto;
+  }
+}
+
 .footer {
   background-color: $color-bg-alt;
   color: $color-text-main;
