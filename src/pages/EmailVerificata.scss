@@ -1,0 +1,36 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.email-verificata-page {
+  @include flex-column-center;
+  padding: $spacing-4xl $spacing-md;
+  min-height: 80vh;
+  text-align: center;
+  background-color: $color-bg-surface;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-light;
+
+  h1 {
+    font-size: $font-size-h2;
+    margin-bottom: $spacing-md;
+    @include gradient-text($gradient-primary);
+  }
+
+  p {
+    color: $color-text-main;
+    font-size: $font-size-body;
+    margin-top: $spacing-md;
+  }
+
+  .success-icon {
+    font-size: 4rem;
+    margin-bottom: $spacing-md;
+    animation: pulseSuccess 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseSuccess {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+  }
+}
