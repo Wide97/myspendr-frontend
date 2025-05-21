@@ -49,7 +49,6 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: $spacing-lg;
     padding: $spacing-2xl $spacing-md;
-    background-color: $color-bg-surface;
 
     .feature-card {
       background: $color-bg-alt;
