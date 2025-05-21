@@ -6,8 +6,8 @@ const InfoCard = ({ label, value, icon }) => {
     <div className="info-card">
       <div className="info-icon">{icon}</div>
       <div className="info-details text-center">
-        <p className="info-label">{label}</p>
-        <p className="info-value">{value.toLocaleString("it-IT", { minimumFractionDigits: 2 })} €</p>
+        <p className="info-label text-center">{label}</p>
+        <p className="info-value text-center">{value.toLocaleString("it-IT", { minimumFractionDigits: 2 })} €</p>
       </div>
     </div>
   );
