@@ -145,6 +145,10 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
+
+  >.container {
+    flex: 1; // rende il contenuto centrale espandibile
+  }
 }
 
 .astronaut-float {

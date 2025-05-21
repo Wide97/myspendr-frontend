@@ -27,24 +27,27 @@ function App() {
       <img src="/gifs/astronauta.png" alt="Astronauta" className="astronaut-float" />
       <img src="/gifs/valuta.png" alt="valuta pulse" className="valuta-pulse" />
 
-      {/* 🛣️ Rotte */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/capitale" element={<CapitaleMovimentoPage />} />
-        <Route path="/movimenti" element={<MovimentiPage />} />
-        <Route path="/profilo" element={<ProfiloPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/email-verificata" element={<EmailVerificata />} />
-        <Route path="/storico" element={<UserStorico />} />
-      </Routes>
+      {/* 🛣️ Wrapper che cresce col contenuto */}
+      <div className="container app-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/capitale" element={<CapitaleMovimentoPage />} />
+          <Route path="/movimenti" element={<MovimentiPage />} />
+          <Route path="/profilo" element={<ProfiloPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/email-verificata" element={<EmailVerificata />} />
+          <Route path="/storico" element={<UserStorico />} />
+        </Routes>
+      </div>
 
       <Footer />
     </div>
   );
 }
+
 
 export default App;
