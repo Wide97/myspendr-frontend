@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiFetch } from "../utils/api";
+import { apiFetch } from "../utils/apiAuth";
 import Loader from "../components/Loader";
 import Toast from "../components/Toast";
 import { useNavigate, useSearchParams } from "react-router-dom";
