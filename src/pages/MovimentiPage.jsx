@@ -21,6 +21,8 @@ const MovimentiPage = () => {
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
 
+  const today = new Date();
+
   const loadData = async () => {
     try {
       setLoading(true);
