@@ -1,7 +1,17 @@
 .line-chart-capitale {
-    background-color: #1e1e1e;
+    width: 100%;
+    max-width: 100%;
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(193, 255, 0, 0.2);
     margin-bottom: 2rem;
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
 }

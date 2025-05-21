@@ -1,55 +1,83 @@
 @import "../styles/variables.scss";
-@import "../styles/mixins.scss"; 
+@import "../styles/mixins.scss";
 
 .user-storico {
-    padding: 2rem;
+  padding: $spacing-xl;
+
+  h2 {
+    color: $color-primary;
+    margin-bottom: $spacing-xl;
+    font-size: $font-size-h2;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+  }
+
+  .btn-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+
+    .btn {
+      min-width: 140px;
+      font-size: $font-size-body;
+      font-weight: $font-weight-semibold;
+      padding: 0.6rem 1.2rem;
+      border-radius: $radius-lg;
+      @include hover-scale;
+      @include pressable;
+    }
+
+    .btn-primary {
+      background-color: $color-primary;
+      color: #000;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+    }
+
+    .btn-secondary {
+      background-color: $color-bg-alt;
+      color: $color-text-main;
+
+      &:hover {
+        background-color: lighten($color-bg-alt, 5%);
+      }
+    }
+  }
+
+  .line-chart-capitale {
+    width: 100%;
+    max-width: 100%;
+    padding: $spacing-xl;
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: $spacing-md;
 
     h2 {
-        color: $color-primary;
-        margin-bottom: 2rem;
-        font-size: 2.4rem;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: 700;
+      font-size: $font-size-h4;
     }
 
     .btn-toggle-wrapper {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
+      flex-direction: column;
+      align-items: center;
 
-        .btn {
-            min-width: 140px;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 0.6rem 1.2rem;
-            border-radius: $radius-lg;
-            @include hover-scale;
-            @include pressable;
-        }
-
-        .btn-primary {
-            background-color: $color-primary;
-            color: #000;
-
-            &:hover {
-                background-color: lighten($color-primary, 10%);
-            }
-        }
-
-        .btn-secondary {
-            background-color: $color-bg-alt;
-            color: $color-text-main;
-
-            &:hover {
-                background-color: lighten($color-bg-alt, 5%);
-            }
-        }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
     }
 
     .line-chart-capitale {
-        max-width: 100%;
-        padding: 2rem;
+      padding: $spacing-md $spacing-sm;
     }
+  }
 }
