@@ -1,0 +1,55 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss"; 
+
+.user-storico {
+    padding: 2rem;
+
+    h2 {
+        color: $color-primary;
+        margin-bottom: 2rem;
+        font-size: 2.4rem;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .btn-toggle-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        .btn {
+            min-width: 140px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: $radius-lg;
+            @include hover-scale;
+            @include pressable;
+        }
+
+        .btn-primary {
+            background-color: $color-primary;
+            color: #000;
+
+            &:hover {
+                background-color: lighten($color-primary, 10%);
+            }
+        }
+
+        .btn-secondary {
+            background-color: $color-bg-alt;
+            color: $color-text-main;
+
+            &:hover {
+                background-color: lighten($color-bg-alt, 5%);
+            }
+        }
+    }
+
+    .line-chart-capitale {
+        max-width: 100%;
+        padding: 2rem;
+    }
+}

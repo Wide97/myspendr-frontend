@@ -44,6 +44,7 @@ const UserNavbar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/capitale">Capitale</NavLink>
         <NavLink to="/movimenti">Movimenti</NavLink>
+        <NavLink to="/storico">Storico</NavLink>
         <NavLink to="/profilo">Profilo</NavLink>
         <div className="user-info">
           <span className="username">Ciao, {username}</span>

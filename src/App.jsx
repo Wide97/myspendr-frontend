@@ -11,6 +11,7 @@ import "./styles/global.scss";
 import ProfiloPage from "./pages/ProfiloPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import EmailVerificata from "./pages/EmailVerificata";
+import UserStorico from "./pages/UserStorico";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/profilo" element={<ProfiloPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/email-verificata" element={<EmailVerificata />} />
+        <Route path="/storico" element={<UserStorico />} />
       </Routes>
 
       <Footer />
