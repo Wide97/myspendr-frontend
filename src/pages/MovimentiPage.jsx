@@ -29,7 +29,16 @@ const MovimentiPage = () => {
         fetchTotaleEntrate(),
         fetchTotaleUscite(),
       ]);
-      setMovimenti(movs.sort((a, b) => new Date(b.data) - new Date(a.data)));
+      const today = new Date();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+
+      const movimentiMeseCorrente = movs.filter((mov) => {
+        const data = new Date(mov.data);
+        return data.getMonth() === currentMonth && data.getFullYear() === currentYear;
+      });
+
+      setMovimenti(movimentiMeseCorrente.sort((a, b) => new Date(b.data) - new Date(a.data)));
       setEntrate(inTot);
       setUscite(outTot);
       // eslint-disable-next-line no-unused-vars
@@ -66,6 +75,10 @@ const MovimentiPage = () => {
       <UserNavbar />
       <div className="movimenti-page container text-center">
         <h2>I tuoi movimenti</h2>
+
+        <p className="text-muted">
+          Mese corrente: {today.toLocaleString("it-IT", { month: "long", year: "numeric" })}
+        </p>
 
         {toast && (
           <Toast
