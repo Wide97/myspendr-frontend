@@ -65,4 +65,45 @@
       border-bottom: none;
     }
   }
+
+  @media (max-width: 768px) {
+    .movimenti-table {
+      display: block;
+      width: 100%;
+      border: none;
+
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+      }
+
+      .movimento-row {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-bg-surface;
+        border: 1px solid $color-border;
+        border-radius: $radius-md;
+        padding: $spacing-md;
+
+        td {
+          display: flex;
+          justify-content: space-between;
+          padding: $spacing-xs 0;
+          border: none;
+
+          &::before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: $color-text-muted;
+          }
+        }
+      }
+    }
+  }
+
 }

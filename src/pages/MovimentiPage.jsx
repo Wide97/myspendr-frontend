@@ -63,8 +63,8 @@ const MovimentiPage = () => {
 
   return (
     <>
-    <UserNavbar/>
-      <div className="movimenti-page container">
+      <UserNavbar />
+      <div className="movimenti-page container text-center">
         <h2>I tuoi movimenti</h2>
 
         {toast && (
@@ -78,7 +78,7 @@ const MovimentiPage = () => {
           <Loader />
         ) : (
           <>
-            <div className="totali-box">
+            <div className="totali-box text-center">
               <InfoCard label="Totale Entrate" value={entrate} />
               <InfoCard label="Totale Uscite" value={uscite} />
             </div>
@@ -99,30 +99,19 @@ const MovimentiPage = () => {
                 </thead>
                 <tbody>
                   {movimenti.map((mov) => (
-                    <tr key={mov.id}>
-                      <td>{new Date(mov.data).toLocaleDateString("it-IT")}</td>
-                      <td
-                        className={
-                          mov.tipo === "ENTRATA" ? "text-green" : "text-red"
-                        }
-                      >
-                        {mov.importo.toLocaleString("it-IT", {
-                          minimumFractionDigits: 2,
-                        })}{" "}
-                        €
+                    <tr key={mov.id} className="movimento-row">
+                      <td data-label="Data">{mov.data}</td>
+                      <td data-label="Importo">{mov.importo} €</td>
+                      <td data-label="Categoria">{mov.categoria}</td>
+                      <td data-label="Descrizione">{mov.descrizione}</td>
+                      <td data-label="Tipo" className={mov.tipo === "ENTRATA" ? "text-green" : "text-red"}>
+                        {mov.tipo}
                       </td>
-                      <td>{mov.categoria}</td>
-                      <td>{mov.descrizione}</td>
-                      <td>{mov.tipo}</td>
-                      <td>
-                        <Button
-                          variant="danger"
-                          onClick={() => handleDelete(mov.id)}
-                        >
-                          Elimina
-                        </Button>
+                      <td data-label="Azioni">
+                        <button onClick={() => handleDelete(mov.id)}>Elimina</button>
                       </td>
                     </tr>
+
                   ))}
                 </tbody>
               </table>
