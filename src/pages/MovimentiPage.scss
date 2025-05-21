@@ -85,8 +85,6 @@
       .movimento-row {
         display: flex;
         flex-direction: column;
-        border: 1px solid $color-border;
-        border-radius: $radius-md;
         padding: $spacing-md;
 
         td {
@@ -101,7 +99,21 @@
             color: $color-text-muted;
           }
         }
+
+        td:last-child {
+          justify-content: center;
+
+          button {
+            width: 100%;
+            max-width: 180px;
+            padding: $spacing-xs $spacing-sm;
+            font-size: $font-size-small;
+            border-radius: $radius-md;
+            margin-top: $spacing-sm;
+          }
+        }
       }
+
     }
   }
 
