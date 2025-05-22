@@ -44,12 +44,18 @@ export function creaMovimento(data) {
 
 export const deleteCapitale = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch("/capitale", {
+  const response = await fetch(`${BASE_URL}/capitale`, {
     method: "DELETE",
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     },
   });
   if (!response.ok) throw new Error("Errore nell'eliminazione del capitale");
 };
+
+
+export function resetCapitaleCompleto() {
+  return apiFetch("/capitale/reset-completo", "PUT");
+}
+
 
