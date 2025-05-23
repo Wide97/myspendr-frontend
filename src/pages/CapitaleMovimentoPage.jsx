@@ -77,7 +77,6 @@ const CapitaleMovimentoPage = () => {
       .catch(() => setToast({ message: "Errore nel reset", type: "error" }));
   };
 
-
   const handleDelete = () => {
     deleteCapitale()
       .then(() => {
@@ -96,7 +95,12 @@ const CapitaleMovimentoPage = () => {
 
   const handleMovimentoSubmit = (e) => {
     e.preventDefault();
-    creaMovimento(movimento)
+
+    creaMovimento({
+      ...movimento,
+      categoria: movimento.categoria.toUpperCase(),
+      fonte: movimento.fonte.toUpperCase(),
+    })
       .then(() => {
         setToast({ message: "Movimento aggiunto", type: "success" });
         setMovimento({
@@ -133,8 +137,8 @@ const CapitaleMovimentoPage = () => {
             📊 Totale:{" "}
             {capitale.totale ??
               parseFloat(capitale.contoBancario || 0) +
-              parseFloat(capitale.liquidita || 0) +
-              parseFloat(capitale.altriFondi || 0)}
+                parseFloat(capitale.liquidita || 0) +
+                parseFloat(capitale.altriFondi || 0)}
             €
           </p>
         </div>
@@ -217,7 +221,10 @@ const CapitaleMovimentoPage = () => {
         <h2>Aggiungi Movimento</h2>
 
         {capitaleEsistente ? (
-          <form className="form movimento-form" onSubmit={handleMovimentoSubmit}>
+          <form
+            className="form movimento-form"
+            onSubmit={handleMovimentoSubmit}
+          >
             <input
               type="number"
               placeholder="Importo"
@@ -327,4 +334,3 @@ const CapitaleMovimentoPage = () => {
 };
 
 export default CapitaleMovimentoPage;
-;

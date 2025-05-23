@@ -51,6 +51,7 @@ const DashboardPage = () => {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         setUsername(payload.sub || "Utente");
+      // eslint-disable-next-line no-unused-vars
       } catch (err) {
         console.warn("Token non valido");
       }
