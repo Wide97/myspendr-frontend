@@ -138,21 +138,16 @@ const CapitaleMovimentoPage = () => {
           />
 
           <div className="capitale-buttons">
-            {!capitaleEsistente ? (
-              <button className="glow" onClick={handleCreate}>
-                Crea Capitale
+            <button className="glow" onClick={handleSaveOrUpdate}>
+              {capitaleEsistente ? "Aggiorna Capitale" : "Crea Capitale"}
+            </button>
+            {capitaleEsistente && (
+              <button className="glow danger" onClick={handleResetCompleto}>
+                Reset Completo
               </button>
-            ) : (
-              <>
-                <button className="glow" onClick={handleUpdate}>
-                  Aggiorna
-                </button>
-                <button className="glow danger" onClick={handleResetCompleto}>
-                  Reset Completo
-                </button>
-              </>
             )}
           </div>
+
         </div>
 
         <h2>Aggiungi Movimento</h2>

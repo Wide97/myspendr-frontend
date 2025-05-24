@@ -44,7 +44,7 @@ const ProfiloPage = () => {
     fetchData();
   }, []);
 
-  if (loading || !profilo || !capitale) {
+  if (loading || !profilo) {
     return <Loader />;
   }
 
