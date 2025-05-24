@@ -98,8 +98,8 @@ const CapitaleMovimentoPage = () => {
 
     const movimentoFixato = {
       ...movimento,
-      categoria: movimento.categoria.toUpperCase().trim(),
-      fonte: movimento.fonte.toUpperCase().trim(),
+      categoria: movimento.categoria.trim().toUpperCase(),
+      fonte: movimento.fonte.trim().toUpperCase(),
     };
     console.log("Invio movimento:", movimentoFixato);
 
