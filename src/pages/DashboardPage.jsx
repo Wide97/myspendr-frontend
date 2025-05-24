@@ -73,7 +73,7 @@ const DashboardPage = () => {
     }
   };
 
-  if (loading || capitale === null) return <Loader />;
+  if (loading) return <Loader />;
 
   const capitaleTotale =
     (capitale?.contoBancario || 0) +
