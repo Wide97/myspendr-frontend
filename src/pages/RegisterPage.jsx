@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import Toast from "../components/Toast";
 import registerImage from "../assets/login-illustration.png";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+
 const RegisterPage = () => {
   const [form, setForm] = useState({
     nome: "",
