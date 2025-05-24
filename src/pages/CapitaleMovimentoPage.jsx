@@ -12,14 +12,12 @@ import {
 import Toast from "../components/Toast";
 import "./CapitaleMovimentoPage.scss";
 import UserNavbar from "./UserNavbar";
+import { useCapitale } from "../context/CapitaleContext";
+
 
 const CapitaleMovimentoPage = () => {
-  const [capitale, setCapitale] = useState({
-    contoBancario: "",
-    liquidita: "",
-    altriFondi: "",
-    totale: 0,
-  });
+  const { capitale, setCapitale } = useCapitale();
+
 
   const [movimento, setMovimento] = useState({
     importo: "",
@@ -32,13 +30,6 @@ const CapitaleMovimentoPage = () => {
 
   const [toast, setToast] = useState(null);
 
-  useEffect(() => {
-    getCapitale()
-      .then((res) => setCapitale(res))
-      .catch(() =>
-        setToast({ message: "Errore nel recupero del capitale", type: "error" })
-      );
-  }, []);
 
   const handleCreate = () => {
     createCapitale(capitale)
@@ -65,17 +56,15 @@ const CapitaleMovimentoPage = () => {
 
   const handleReset = () => {
     resetCapitale()
-      .then(() =>
-        setCapitale({
-          contoBancario: 0,
-          liquidita: 0,
-          altriFondi: 0,
-          totale: 0,
-        })
-      )
-      .then(() => setToast({ message: "Capitale azzerato", type: "success" }))
-      .catch(() => setToast({ message: "Errore nel reset", type: "error" }));
+      .then((res) => {
+        setCapitale(res); 
+        setToast({ message: "Capitale azzerato", type: "success" });
+      })
+      .catch(() =>
+        setToast({ message: "Errore nel reset", type: "error" })
+      );
   };
+
 
   const handleDelete = () => {
     deleteCapitale()
@@ -195,13 +184,8 @@ const CapitaleMovimentoPage = () => {
                   className="glow danger"
                   onClick={() => {
                     resetCapitaleCompleto()
-                      .then(() => {
-                        setCapitale({
-                          contoBancario: 0,
-                          liquidita: 0,
-                          altriFondi: 0,
-                          totale: 0,
-                        });
+                      .then((res) => {
+                        setCapitale(res); // aggiorna il context con la risposta dal backend
                         setToast({
                           message: "Reset completo eseguito con successo",
                           type: "success",
@@ -217,6 +201,7 @@ const CapitaleMovimentoPage = () => {
                 >
                   Reset Completo
                 </button>
+
               </div>
             )}
           </div>

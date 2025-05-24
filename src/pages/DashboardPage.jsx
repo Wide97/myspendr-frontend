@@ -12,10 +12,11 @@ import DateRangePicker from "../components/DateRangePicker";
 import Loader from "../components/Loader";
 import "./DashboardPage.scss";
 import UserNavbar from "./UserNavbar";
+import { useCapitale } from "../context/CapitaleContext";
 
 const DashboardPage = () => {
   const [username, setUsername] = useState("");
-  const [capitale, setCapitale] = useState(null);
+  const { capitale, setCapitale } = useCapitale();
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
   const [movimenti, setMovimenti] = useState([]);
@@ -27,16 +28,18 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const capitale = await getCapitale();
+        if (!capitale) {
+          const capitaleData = await getCapitale();
+          setCapitale(capitaleData);
+        }
+
         const entrate = await getTotaleEntrate();
         const uscite = await getTotaleUscite();
         const movimenti = await getTuttiIMovimenti();
 
-        setCapitale(capitale);
         setEntrate(entrate);
         setUscite(uscite);
         setMovimenti(movimenti);
-        console.log("📊 MOVIMENTI per grafico:", movimenti);
       } catch (error) {
         console.error("Errore nel caricamento dati:", error);
       } finally {
@@ -51,7 +54,7 @@ const DashboardPage = () => {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         setUsername(payload.sub || "Utente");
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (err) {
         console.warn("Token non valido");
       }
@@ -70,7 +73,7 @@ const DashboardPage = () => {
     }
   };
 
-  if (loading) return <Loader />;
+  if (loading || capitale === null) return <Loader />;
 
   const capitaleTotale =
     (capitale?.contoBancario || 0) +

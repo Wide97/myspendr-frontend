@@ -9,10 +9,11 @@ import Loader from "../components/Loader";
 import Button from "../components/Button";
 import "./ProfiloPage.scss";
 import UserNavbar from "./UserNavbar";
+import { useCapitale } from "../context/CapitaleContext";
 
 const ProfiloPage = () => {
   const [profilo, setProfilo] = useState(null);
-  const [capitale, setCapitale] = useState(null);
+  const { capitale, setCapitale } = useCapitale();
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -20,28 +21,33 @@ const ProfiloPage = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [p, c, e, u] = await Promise.all([
+        const [p, e, u] = await Promise.all([
           getProfilo(),
-          getCapitale(),
           getTotaleEntrate(),
           getTotaleUscite(),
         ]);
         setProfilo(p);
-        setCapitale(c);
         setEntrate(e);
         setUscite(u);
+
+        if (!capitale) {
+          const c = await getCapitale();
+          setCapitale(c);
+        }
       } catch (error) {
         console.error("Errore nel caricamento profilo:", error);
       } finally {
         setLoading(false);
       }
     }
+
     fetchData();
   }, []);
 
-  if (loading || !profilo || !capitale) {
+  if (loading || !profilo || !capitale || capitale.totale === 0) {
     return <Loader />;
   }
+
 
   return (
     <>

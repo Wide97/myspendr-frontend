@@ -10,9 +10,9 @@ import Loader from "../components/Loader";
 import Toast from "../components/Toast";
 import InfoCard from "../components/InfoCard";
 import "./MovimentiPage.scss";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
 import UserNavbar from "./UserNavbar";
+import { useCapitale } from "../context/CapitaleContext";
+
 
 const MovimentiPage = () => {
   const [movimenti, setMovimenti] = useState([]);
@@ -20,6 +20,8 @@ const MovimentiPage = () => {
   const [toast, setToast] = useState(null);
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
+  const { capitale } = useCapitale();
+
 
   const today = new Date();
 
@@ -69,8 +71,17 @@ const MovimentiPage = () => {
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (
+      capitale &&
+      (capitale.contoBancario !== "" ||
+        capitale.liquidita !== "" ||
+        capitale.altriFondi !== "")
+    ) {
+      loadData();
+    }
+  }, [capitale]);
+
+
 
   return (
     <>
