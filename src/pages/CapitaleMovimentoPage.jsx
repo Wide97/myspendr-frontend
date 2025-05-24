@@ -98,9 +98,10 @@ const CapitaleMovimentoPage = () => {
 
     const movimentoFixato = {
       ...movimento,
-      categoria: movimento.categoria.toUpperCase(),
-      fonte: movimento.fonte.toUpperCase(),
+      categoria: movimento.categoria.toUpperCase().trim(),
+      fonte: movimento.fonte.toUpperCase().trim(),
     };
+    console.log("Invio movimento:", movimentoFixato);
 
     creaMovimento(movimentoFixato)
       .then(() => {
@@ -140,8 +141,8 @@ const CapitaleMovimentoPage = () => {
             📊 Totale:{" "}
             {capitale.totale ??
               parseFloat(capitale.contoBancario || 0) +
-                parseFloat(capitale.liquidita || 0) +
-                parseFloat(capitale.altriFondi || 0)}
+              parseFloat(capitale.liquidita || 0) +
+              parseFloat(capitale.altriFondi || 0)}
             €
           </p>
         </div>
