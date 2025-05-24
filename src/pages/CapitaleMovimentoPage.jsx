@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   getCapitale,
   createCapitale,
@@ -14,10 +14,8 @@ import "./CapitaleMovimentoPage.scss";
 import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
 
-
 const CapitaleMovimentoPage = () => {
   const { capitale, setCapitale } = useCapitale();
-
 
   const [movimento, setMovimento] = useState({
     importo: "",
@@ -29,7 +27,6 @@ const CapitaleMovimentoPage = () => {
   });
 
   const [toast, setToast] = useState(null);
-
 
   const handleCreate = () => {
     createCapitale(capitale)
@@ -54,44 +51,27 @@ const CapitaleMovimentoPage = () => {
       );
   };
 
-  const handleReset = () => {
-    resetCapitale()
+  const handleResetCompleto = () => {
+    resetCapitaleCompleto()
       .then((res) => {
-        setCapitale(res); 
-        setToast({ message: "Capitale azzerato", type: "success" });
+        setCapitale(res);
+        setToast({
+          message: "Reset completo eseguito con successo",
+          type: "success",
+        });
       })
       .catch(() =>
-        setToast({ message: "Errore nel reset", type: "error" })
+        setToast({ message: "Errore nel reset completo", type: "error" })
       );
-  };
-
-
-  const handleDelete = () => {
-    deleteCapitale()
-      .then(() => {
-        setCapitale({
-          contoBancario: "",
-          liquidita: "",
-          altriFondi: "",
-          totale: 0,
-        });
-        setToast({ message: "Capitale eliminato", type: "success" });
-      })
-      .catch(() => {
-        setToast({ message: "Errore durante eliminazione", type: "error" });
-      });
   };
 
   const handleMovimentoSubmit = (e) => {
     e.preventDefault();
-
     const movimentoFixato = {
       ...movimento,
       categoria: movimento.categoria.trim().toUpperCase(),
       fonte: movimento.fonte.trim().toUpperCase(),
     };
-    console.log("Invio movimento:", movimentoFixato);
-
     creaMovimento(movimentoFixato)
       .then(() => {
         setToast({ message: "Movimento aggiunto", type: "success" });
@@ -109,12 +89,7 @@ const CapitaleMovimentoPage = () => {
       );
   };
 
-
-  const capitaleEsistente =
-    capitale &&
-    (capitale.contoBancario !== "" ||
-      capitale.liquidita !== "" ||
-      capitale.altriFondi !== "");
+  const capitaleEsistente = capitale && capitale.totale !== undefined;
 
   return (
     <>
@@ -164,45 +139,18 @@ const CapitaleMovimentoPage = () => {
 
           <div className="capitale-buttons">
             {!capitaleEsistente ? (
-              <div className="block">
-                <button className="glow" onClick={handleCreate}>
-                  Crea Capitale
-                </button>
-                <button className="glow danger" onClick={handleDelete}>
-                  Elimina
-                </button>
-              </div>
+              <button className="glow" onClick={handleCreate}>
+                Crea Capitale
+              </button>
             ) : (
-              <div className="block">
+              <>
                 <button className="glow" onClick={handleUpdate}>
                   Aggiorna
                 </button>
-                <button className="glow danger" onClick={handleReset}>
-                  Azzera
-                </button>
-                <button
-                  className="glow danger"
-                  onClick={() => {
-                    resetCapitaleCompleto()
-                      .then((res) => {
-                        setCapitale(res); // aggiorna il context con la risposta dal backend
-                        setToast({
-                          message: "Reset completo eseguito con successo",
-                          type: "success",
-                        });
-                      })
-                      .catch(() =>
-                        setToast({
-                          message: "Errore nel reset completo",
-                          type: "error",
-                        })
-                      );
-                  }}
-                >
+                <button className="glow danger" onClick={handleResetCompleto}>
                   Reset Completo
                 </button>
-
-              </div>
+              </>
             )}
           </div>
         </div>
