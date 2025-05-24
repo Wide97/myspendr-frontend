@@ -96,7 +96,14 @@ const CapitaleMovimentoPage = () => {
 
   const handleMovimentoSubmit = (e) => {
     e.preventDefault();
-    creaMovimento(movimento)
+
+    const movimentoFixato = {
+      ...movimento,
+      categoria: movimento.categoria.toUpperCase(),
+      fonte: movimento.fonte.toUpperCase(),
+    };
+
+    creaMovimento(movimentoFixato)
       .then(() => {
         setToast({ message: "Movimento aggiunto", type: "success" });
         setMovimento({
@@ -112,6 +119,7 @@ const CapitaleMovimentoPage = () => {
         setToast({ message: "Errore nell’aggiunta", type: "error" })
       );
   };
+
 
   const capitaleEsistente =
     capitale &&
