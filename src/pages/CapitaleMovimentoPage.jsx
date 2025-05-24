@@ -38,17 +38,29 @@ const CapitaleMovimentoPage = () => {
       );
   };
 
-  const handleUpdate = () => {
-    updateCapitale(capitale)
-      .then(() =>
-        setToast({
-          message: "Capitale aggiornato correttamente",
-          type: "success",
+  const handleSaveOrUpdate = () => {
+    if (!capitaleEsistente) {
+      createCapitale(capitale)
+        .then((res) => {
+          setCapitale(res); // aggiorna lo stato globale
+          setToast({ message: "Capitale creato correttamente", type: "success" });
         })
-      )
-      .catch(() =>
-        setToast({ message: "Errore nell’aggiornamento", type: "error" })
-      );
+        .catch(() =>
+          setToast({ message: "Errore nella creazione", type: "error" })
+        );
+    } else {
+      updateCapitale(capitale)
+        .then((res) => {
+          setCapitale(res); // aggiorna lo stato globale
+          setToast({
+            message: "Capitale aggiornato correttamente",
+            type: "success",
+          });
+        })
+        .catch(() =>
+          setToast({ message: "Errore nell’aggiornamento", type: "error" })
+        );
+    }
   };
 
   const handleResetCompleto = () => {
