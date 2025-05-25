@@ -90,7 +90,7 @@ const DashboardPage = () => {
         </section>
 
         <section className="dashboard-telegram">
-          <h2 className="text-center">Collega il tuo bot Telegram</h2>
+          <h2 className="text-center mb-3">Collega il tuo bot Telegram</h2>
           {profilo?.telegramToken && (
             <TelegramQR telegramToken={profilo.telegramToken} />
           )}
