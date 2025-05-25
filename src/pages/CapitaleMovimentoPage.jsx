@@ -95,10 +95,15 @@ const CapitaleMovimentoPage = () => {
           tipo: "ENTRATA",
           fonte: "",
         });
+        return getCapitale();
+      })
+      .then((res) => {
+        setCapitale(res);
       })
       .catch(() =>
         setToast({ message: "Errore nell’aggiunta", type: "error" })
       );
+
   };
 
   const capitaleEsistente = capitale && capitale.totale !== undefined;
