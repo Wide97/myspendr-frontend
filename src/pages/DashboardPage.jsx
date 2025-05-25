@@ -6,6 +6,7 @@ import {
   getTuttiIMovimenti,
   getMovimentiByRange,
 } from "../utils/dashUtils";
+import { getProfilo } from "../utils/profiloApi";
 import InfoCard from "../components/InfoCard";
 import PieChartExpenses from "../components/PieChartExpenses";
 import DateRangePicker from "../components/DateRangePicker";
@@ -15,14 +16,13 @@ import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
 import TelegramQR from "../components/TelegramQR";
 
-
 const DashboardPage = () => {
-  const [username, setUsername] = useState("");
   const { capitale, setCapitale } = useCapitale();
   const [entrate, setEntrate] = useState(0);
   const [uscite, setUscite] = useState(0);
   const [movimenti, setMovimenti] = useState([]);
   const [filteredMovimenti, setFilteredMovimenti] = useState([]);
+  const [profilo, setProfilo] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const today = new Date().toLocaleDateString();
@@ -30,6 +30,9 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const profiloData = await getProfilo();
+        setProfilo(profiloData);
+
         if (!capitale) {
           const capitaleData = await getCapitale();
           setCapitale(capitaleData);
@@ -49,20 +52,6 @@ const DashboardPage = () => {
       }
     };
 
-    const extractUsername = () => {
-      const token = localStorage.getItem("token");
-      if (!token) return;
-
-      try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        setUsername(payload.sub || "Utente");
-        // eslint-disable-next-line no-unused-vars
-      } catch (err) {
-        console.warn("Token non valido");
-      }
-    };
-
-    extractUsername();
     fetchData();
   }, []);
 
@@ -89,7 +78,7 @@ const DashboardPage = () => {
       <UserNavbar />
       <div className="dashboard container">
         <header className="dashboard-header">
-          <h1>Ciao, {username} 👋</h1>
+          <h1>Ciao, {profilo?.nome || "Utente"} 👋</h1>
           <p className="data">{today}</p>
         </header>
 
