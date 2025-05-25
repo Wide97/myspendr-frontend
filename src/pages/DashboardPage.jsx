@@ -13,6 +13,8 @@ import Loader from "../components/Loader";
 import "./DashboardPage.scss";
 import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
+import TelegramQR from "../components/TelegramQR";
+
 
 const DashboardPage = () => {
   const [username, setUsername] = useState("");
@@ -96,6 +98,13 @@ const DashboardPage = () => {
           <InfoCard label="Entrate Totali" value={entrate} icon="📈" />
           <InfoCard label="Uscite Totali" value={uscite} icon="📉" />
           <InfoCard label="Saldo Netto" value={saldoNetto} icon="🧾" />
+        </section>
+
+        <section className="dashboard-telegram">
+          <h2 className="text-center">Collega il tuo bot Telegram</h2>
+          {profilo?.telegramToken && (
+            <TelegramQR telegramToken={profilo.telegramToken} />
+          )}
         </section>
 
         <section className="dashboard-chart">
