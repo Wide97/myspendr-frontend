@@ -44,10 +44,6 @@ const ProfiloPage = () => {
     fetchData();
   }, []);
 
-  if (loading || !profilo) {
-    return <Loader />;
-  }
-
 
   return (
     <>
