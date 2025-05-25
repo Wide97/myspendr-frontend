@@ -30,10 +30,19 @@ const ProfiloPage = () => {
         setEntrate(e);
         setUscite(u);
 
-        if (!capitale) {
+        try {
           const c = await getCapitale();
           setCapitale(c);
+        } catch (e) {
+          console.warn("⚠️ Capitale non trovato, imposto valori iniziali a 0");
+          setCapitale({
+            contoBancario: 0,
+            liquidita: 0,
+            altriFondi: 0,
+            totale: 0,
+          });
         }
+
       } catch (error) {
         console.error("Errore nel caricamento profilo:", error);
       } finally {
