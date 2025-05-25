@@ -8,7 +8,7 @@ const TelegramQR = ({ telegramToken }) => {
 
     return (
         <div className="telegram-qr-container">
-            <h2>📲 Collega Telegram</h2>
+            <h2 className="pb-3">📲 Collega Telegram</h2>
             <p>Scansiona il codice o clicca per aprire direttamente il bot:</p>
 
             <a href={link} target="_blank" rel="noreferrer">
