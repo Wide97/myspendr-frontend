@@ -7,6 +7,7 @@ import {
   getMovimentiByRange,
 } from "../utils/dashUtils";
 import { getProfilo } from "../utils/profiloApi";
+import { getTotaleEntrateUltimoMese, getTotaleUsciteUltimoMese } from "../utils/inOutMens";
 import InfoCard from "../components/InfoCard";
 import PieChartExpenses from "../components/PieChartExpenses";
 import DateRangePicker from "../components/DateRangePicker";
@@ -24,6 +25,8 @@ const DashboardPage = () => {
   const [filteredMovimenti, setFilteredMovimenti] = useState([]);
   const [profilo, setProfilo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [entrateMese, setEntrateMese] = useState(0);
+  const [usciteMese, setUsciteMese] = useState(0);
 
   const today = new Date().toLocaleDateString();
 
@@ -38,13 +41,19 @@ const DashboardPage = () => {
           setCapitale(capitaleData);
         }
 
-        const entrate = await getTotaleEntrate();
-        const uscite = await getTotaleUscite();
-        const movimenti = await getTuttiIMovimenti();
+        const [entrateTot, usciteTot, movimentiData, entrateUltimoMese, usciteUltimoMese] = await Promise.all([
+          getTotaleEntrate(),
+          getTotaleUscite(),
+          getTuttiIMovimenti(),
+          getTotaleEntrateUltimoMese(),
+          getTotaleUsciteUltimoMese(),
+        ]);
 
-        setEntrate(entrate);
-        setUscite(uscite);
-        setMovimenti(movimenti);
+        setEntrate(entrateTot);
+        setUscite(usciteTot);
+        setMovimenti(movimentiData);
+        setEntrateMese(entrateUltimoMese);
+        setUsciteMese(usciteUltimoMese);
       } catch (error) {
         console.error("Errore nel caricamento dati:", error);
       } finally {
@@ -80,6 +89,11 @@ const DashboardPage = () => {
         <header className="dashboard-header">
           <h1>Ciao, {profilo?.nome || "Utente"} 👋</h1>
           <p className="data">{today}</p>
+
+          <div className="dashboard-monthly-summary">
+            <span>📈 Entrate questo mese: {entrateMese}€</span>
+            <span>📉 Uscite questo mese: {usciteMese}€</span>
+          </div>
         </header>
 
         <section className="dashboard-cards">
