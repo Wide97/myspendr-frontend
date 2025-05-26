@@ -30,10 +30,8 @@
       span {
         font-size: $font-size-subtext;
         color: $color-text-main;
-        background-color: $color-bg-alt;
         padding: $spacing-xs $spacing-sm;
-        border-radius: $radius-md;
-        box-shadow: $shadow-light;
+
       }
 
       @include respond-to(sm) {
