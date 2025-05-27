@@ -12,6 +12,7 @@ import ProfiloPage from "./pages/ProfiloPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import EmailVerificata from "./pages/EmailVerificata";
 import UserStorico from "./pages/UserStorico";
+import UserBudget from "./pages/UserBudget";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/email-verificata" element={<EmailVerificata />} />
         <Route path="/storico" element={<UserStorico />} />
+         <Route path="/budget" element={<UserBudget />} />
       </Routes>
 
       <Footer />

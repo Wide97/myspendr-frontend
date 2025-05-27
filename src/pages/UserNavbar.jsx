@@ -46,6 +46,7 @@ const UserNavbar = () => {
         <NavLink to="/movimenti">Movimenti</NavLink>
         <NavLink to="/storico">Storico</NavLink>
         <NavLink to="/profilo">Profilo</NavLink>
+        <NavLink to="/budget">Budget</NavLink>
         <div className="user-info">
           <span className="username">Ciao, {username}</span>
           <button className="logout-btn" onClick={handleLogout}>Logout</button>

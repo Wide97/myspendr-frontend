@@ -1,0 +1,32 @@
+.budget-bar-chart-wrapper {
+  margin: 2rem auto;
+  padding: $spacing-lg;
+  h3 {
+    text-align: center;
+    color: $color-primary;
+    font-size: $font-size-h3;
+    margin-bottom: $spacing-md;
+  }
+
+  .recharts-wrapper {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .recharts-tooltip-wrapper {
+    color: $color-text-main;
+    padding: $spacing-xs;
+  }
+
+  .recharts-default-legend {
+    color: $color-text-main;
+  }
+
+  @include respond-to(sm) {
+    padding: $spacing-md;
+
+    h3 {
+      font-size: $font-size-h4;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.user-budget {
+    padding-top: 2rem;
+
+    h2 {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: $color-primary;
+    }
+
+    .form-section {
+        @include flex-column-center;
+        gap: $spacing-md;
+        margin-bottom: 2rem;
+
+        select,
+        input {
+            padding: $spacing-sm;
+            font-size: 1rem;
+            border-radius: $radius-md;
+            background-color: $color-bg-surface;
+            color: $color-text-main;
+            border: 1px solid $color-border;
+            width: 200px;
+        }
+    }
+
+    .budget-summary {
+        @include flex-column-center;
+        gap: $spacing-md;
+    }
+
+    .progress-bar {
+        width: 100%;
+        max-width: 300px;
+        height: 16px;
+        background: $color-bg-alt;
+        border-radius: $radius-md;
+        overflow: hidden;
+
+        .bar-fill {
+            height: 100%;
+            background: $color-success;
+            transition: width 0.3s ease;
+
+            &.bar-over {
+                background: $color-error;
+            }
+        }
+    }
+
+    .budget-residuo {
+        font-size: $font-size-body;
+        font-weight: $font-weight-semibold;
+
+        &.ok {
+            color: $color-success;
+        }
+
+        &.over {
+            color: $color-error;
+        }
+    }
+
+    .budget-bar-chart-wrapper {
+        margin-top: 3rem;
+        background-color: $color-bg-surface;
+        padding: $spacing-lg;
+        border-radius: $radius-lg;
+        box-shadow: $shadow-light;
+
+        h3 {
+            text-align: center;
+            color: $color-primary;
+            font-size: $font-size-h4;
+            margin-bottom: $spacing-md;
+        }
+    }
+}
