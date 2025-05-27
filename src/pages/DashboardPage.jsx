@@ -100,6 +100,8 @@ const DashboardPage = () => {
     (capitale?.altriFondi || 0);
 
   const saldoNetto = entrate - uscite;
+  // eslint-disable-next-line no-unused-vars
+  const saldoMese = entrateMese - usciteMese;
 
   return (
     <>
@@ -112,13 +114,13 @@ const DashboardPage = () => {
           <section className="dashboard-barcharts">
             <h2>Entrate per Categoria</h2>
             <BarChartMovimenti
-              movimenti={getMovimentiDelMese(entrateMese)}
+              movimenti={getMovimentiDelMese(movimenti)}
               tipo="ENTRATA"
             />
 
             <h2 className="mt-5">Uscite per Categoria</h2>
             <BarChartMovimenti
-              movimenti={getMovimentiDelMese(usciteMese)}
+              movimenti={getMovimentiDelMese(movimenti)}
               tipo="USCITA"
             />
           </section>
