@@ -135,7 +135,7 @@ const MovimentiPage = () => {
           <>
             <div className="totali-box">
               <InfoCardWithChart
-                label="Entrate del mese"
+                label="Entrate del mese: "
                 value={entrate}
                 icon="📈"
                 chartType="area"
@@ -143,7 +143,7 @@ const MovimentiPage = () => {
               />
 
               <InfoCardWithChart
-                label="Uscite del mese"
+                label="Uscite del mese: "
                 value={uscite}
                 icon="📉"
                 chartType="bar"
