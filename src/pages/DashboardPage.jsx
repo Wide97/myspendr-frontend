@@ -29,7 +29,21 @@ const DashboardPage = () => {
   const [filteredMovimenti, setFilteredMovimenti] = useState([]);
   const [profilo, setProfilo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [entrateMese, setEntrateMese] = useState(0);
+  const [usciteMese, setUsciteMese] = useState(0);
 
+  const getMovimentiDelMese = (movimenti) => {
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    return movimenti.filter((m) => {
+      const data = new Date(m.data);
+      return (
+        data.getMonth() === currentMonth && data.getFullYear() === currentYear
+      );
+    });
+  };
 
   const today = new Date().toLocaleDateString();
 
@@ -44,21 +58,20 @@ const DashboardPage = () => {
           setCapitale(capitaleData);
         }
 
-        const [
-          entrateTot,
-          usciteTot,
-          movimentiData,
-        ] = await Promise.all([
-          getTotaleEntrate(),
-          getTotaleUscite(),
-          getTuttiIMovimenti(),
-          getTotaleEntrateUltimoMese(),
-          getTotaleUsciteUltimoMese(),
-        ]);
+        const [entrateTot, usciteTot, movimentiData, meseEntrate, meseUscite] =
+          await Promise.all([
+            getTotaleEntrate(),
+            getTotaleUscite(),
+            getTuttiIMovimenti(),
+            getTotaleEntrateUltimoMese(),
+            getTotaleUsciteUltimoMese(),
+          ]);
 
         setEntrate(entrateTot);
         setUscite(usciteTot);
         setMovimenti(movimentiData);
+        setEntrateMese(meseEntrate);
+        setUsciteMese(meseUscite);
       } catch (error) {
         console.error("Errore nel caricamento dati:", error);
       } finally {
@@ -98,10 +111,16 @@ const DashboardPage = () => {
 
           <section className="dashboard-barcharts">
             <h2>Entrate per Categoria</h2>
-            <BarChartMovimenti movimenti={movimenti} tipo="ENTRATA" />
+            <BarChartMovimenti
+              movimenti={getMovimentiDelMese(entrateMese)}
+              tipo="ENTRATA"
+            />
 
             <h2 className="mt-5">Uscite per Categoria</h2>
-            <BarChartMovimenti movimenti={movimenti} tipo="USCITA" />
+            <BarChartMovimenti
+              movimenti={getMovimentiDelMese(usciteMese)}
+              tipo="USCITA"
+            />
           </section>
         </header>
 
