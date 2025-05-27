@@ -12,7 +12,7 @@ import InfoCard from "../components/InfoCard";
 import "./MovimentiPage.scss";
 import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
-
+import InfoCardWithChart from "../components/InfoCardWithChart";
 
 const MovimentiPage = () => {
   const [movimenti, setMovimenti] = useState([]);
@@ -22,8 +22,29 @@ const MovimentiPage = () => {
   const [uscite, setUscite] = useState(0);
   const { capitale } = useCapitale();
 
-
   const today = new Date();
+
+  const getAreaDataEntrate = (movs) =>
+    movs
+      .filter((m) => m.tipo === "ENTRATA")
+      .slice(-7)
+      .map((m) => ({
+        giorno: new Date(m.data).toLocaleDateString("it-IT", {
+          weekday: "short",
+        }),
+        valore: m.importo,
+      }));
+
+  const getBarDataUscite = (movs) =>
+    movs
+      .filter((m) => m.tipo === "USCITA")
+      .slice(-7)
+      .map((m) => ({
+        giorno: new Date(m.data).toLocaleDateString("it-IT", {
+          weekday: "short",
+        }),
+        valore: m.importo,
+      }));
 
   const loadData = async () => {
     try {
@@ -39,10 +60,16 @@ const MovimentiPage = () => {
 
       const movimentiMeseCorrente = movs.filter((mov) => {
         const data = new Date(mov.data);
-        return data.getMonth() === currentMonth && data.getFullYear() === currentYear;
+        return (
+          data.getMonth() === currentMonth && data.getFullYear() === currentYear
+        );
       });
 
-      setMovimenti(movimentiMeseCorrente.sort((a, b) => new Date(b.data) - new Date(a.data)));
+      setMovimenti(
+        movimentiMeseCorrente.sort(
+          (a, b) => new Date(b.data) - new Date(a.data)
+        )
+      );
       setEntrate(inTot);
       setUscite(outTot);
       // eslint-disable-next-line no-unused-vars
@@ -81,7 +108,8 @@ const MovimentiPage = () => {
     }
   }, [capitale]);
 
-
+  const entrateData = getAreaDataEntrate(movimenti);
+  const usciteData = getBarDataUscite(movimenti);
 
   return (
     <>
@@ -90,7 +118,8 @@ const MovimentiPage = () => {
         <h2>I tuoi movimenti</h2>
 
         <p className="text-muted">
-          Mese corrente: {today.toLocaleString("it-IT", { month: "long", year: "numeric" })}
+          Mese corrente:{" "}
+          {today.toLocaleString("it-IT", { month: "long", year: "numeric" })}
         </p>
 
         {toast && (
@@ -105,8 +134,21 @@ const MovimentiPage = () => {
         ) : (
           <>
             <div className="totali-box">
-              <InfoCard label="Totale Entrate" value={entrate} />
-              <InfoCard label="Totale Uscite" value={uscite} />
+              <InfoCardWithChart
+                label="Entrate del mese"
+                value={entrate}
+                icon="📈"
+                chartType="area"
+                chartData={entrateData}
+              />
+
+              <InfoCardWithChart
+                label="Uscite del mese"
+                value={uscite}
+                icon="📉"
+                chartType="bar"
+                chartData={usciteData}
+              />
             </div>
 
             {movimenti.length === 0 ? (
@@ -130,16 +172,23 @@ const MovimentiPage = () => {
                       <td data-label="Importo">{mov.importo} €</td>
                       <td data-label="Categoria">{mov.categoria}</td>
                       <td data-label="Descrizione">{mov.descrizione}</td>
-                      <td data-label="Tipo" className={mov.tipo === "ENTRATA" ? "text-green" : "text-red"}>
+                      <td
+                        data-label="Tipo"
+                        className={
+                          mov.tipo === "ENTRATA" ? "text-green" : "text-red"
+                        }
+                      >
                         {mov.tipo}
                       </td>
                       <td data-label="Azioni">
-                        <Button onClick={() => handleDelete(mov.id)} variant="danger">
+                        <Button
+                          onClick={() => handleDelete(mov.id)}
+                          variant="danger"
+                        >
                           Elimina
                         </Button>
                       </td>
                     </tr>
-
                   ))}
                 </tbody>
               </table>
