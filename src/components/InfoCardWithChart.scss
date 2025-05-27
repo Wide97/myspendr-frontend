@@ -2,10 +2,7 @@
 @import "../styles/mixins.scss";
 
 .info-card-chart {
-  background-color: $color-bg-surface;
-  border-radius: $radius-lg;
   padding: $spacing-md;
-  box-shadow: $shadow-light;
   width: 100%;
   max-width: 260px;
   color: $color-text-main;

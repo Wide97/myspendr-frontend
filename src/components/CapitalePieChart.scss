@@ -1,0 +1,43 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.capitale-pie-chart {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: $color-bg-surface;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-light;
+  color: $color-text-main;
+  font-family: $font-primary;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  .recharts-tooltip-wrapper {
+    z-index: 10;
+  }
+
+  .recharts-default-tooltip {
+    color: $color-text-main;
+    font-size: $font-size-xs;
+    padding: $spacing-xs $spacing-sm;
+  }
+
+  .recharts-legend-wrapper {
+    font-size: $font-size-small;
+    color: $color-text-muted;
+  }
+
+  svg text {
+    fill: $color-text-main;
+    font-size: $font-size-xs;
+  }
+
+  @include respond-to(sm) {
+    padding: $spacing-md;
+  }
+}

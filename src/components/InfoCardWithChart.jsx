@@ -9,6 +9,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import "./InfoCardWithChart.scss";
+
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {

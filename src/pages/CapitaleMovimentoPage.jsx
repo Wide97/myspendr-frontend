@@ -3,8 +3,6 @@ import {
   getCapitale,
   createCapitale,
   updateCapitale,
-  resetCapitale,
-  deleteCapitale,
   resetCapitaleCompleto,
   creaMovimento,
 } from "../utils/capitaleMovimentoUtils";
@@ -13,6 +11,7 @@ import Toast from "../components/Toast";
 import "./CapitaleMovimentoPage.scss";
 import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
+import CapitalePieChart from "../components/CapitalePieChart";
 
 const CapitaleMovimentoPage = () => {
   const { capitale, setCapitale } = useCapitale();
@@ -28,22 +27,15 @@ const CapitaleMovimentoPage = () => {
 
   const [toast, setToast] = useState(null);
 
-  const handleCreate = () => {
-    createCapitale(capitale)
-      .then(() =>
-        setToast({ message: "Capitale creato correttamente", type: "success" })
-      )
-      .catch(() =>
-        setToast({ message: "Errore nella creazione", type: "error" })
-      );
-  };
-
   const handleSaveOrUpdate = () => {
     if (!capitaleEsistente) {
       createCapitale(capitale)
         .then((res) => {
           setCapitale(res); // aggiorna lo stato globale
-          setToast({ message: "Capitale creato correttamente", type: "success" });
+          setToast({
+            message: "Capitale creato correttamente",
+            type: "success",
+          });
         })
         .catch(() =>
           setToast({ message: "Errore nella creazione", type: "error" })
@@ -103,7 +95,6 @@ const CapitaleMovimentoPage = () => {
       .catch(() =>
         setToast({ message: "Errore nell’aggiunta", type: "error" })
       );
-
   };
 
   const capitaleEsistente = capitale && capitale.totale !== undefined;
@@ -115,15 +106,18 @@ const CapitaleMovimentoPage = () => {
         <h2>Gestione Capitale</h2>
 
         <div className="capitale-valori">
-          <p>💳 Conto Bancario: {capitale.contoBancario}€</p>
-          <p>💵 Liquidità: {capitale.liquidita}€</p>
-          <p>🔐 Altri Fondi: {capitale.altriFondi}€</p>
-          <p>
-            📊 Totale:{" "}
+          <CapitalePieChart
+            contoBancario={capitale.contoBancario}
+            liquidita={capitale.liquidita}
+            altriFondi={capitale.altriFondi}
+          />
+
+          <p className="capitale-totale">
+            Totale:{" "}
             {capitale.totale ??
               parseFloat(capitale.contoBancario || 0) +
-              parseFloat(capitale.liquidita || 0) +
-              parseFloat(capitale.altriFondi || 0)}
+                parseFloat(capitale.liquidita || 0) +
+                parseFloat(capitale.altriFondi || 0)}
             €
           </p>
         </div>
@@ -164,7 +158,6 @@ const CapitaleMovimentoPage = () => {
               </button>
             )}
           </div>
-
         </div>
 
         <h2>Aggiungi Movimento</h2>

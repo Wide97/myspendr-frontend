@@ -81,22 +81,31 @@
   }
 
   .capitale-valori {
-    padding: $spacing-md;
-    margin-bottom: $spacing-lg;
-    box-shadow: $shadow-light;
-    color: $color-text-main;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-sm;
-    font-size: $font-size-h3;
+    margin: $spacing-xl auto;
+    padding: $spacing-lg;
+    max-width: 600px;
+    text-align: center;
+    @include flex-column-center;
 
-    p {
-      margin: 0;
+    .capitale-pie-chart {
+      width: 100%;
+      height: 250px;
+      margin-bottom: $spacing-md;
+    }
+
+    .capitale-totale {
+      font-size: $font-size-h5;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      margin-top: $spacing-sm;
     }
 
     @include respond-to(sm) {
-      grid-template-columns: 1fr;
-      text-align: center;
+      padding: $spacing-md;
+
+      .capitale-totale {
+        font-size: $font-size-body;
+      }
     }
   }
 }
