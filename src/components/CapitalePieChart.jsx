@@ -9,7 +9,6 @@ import {
 } from "recharts";
 import "./CapitalePieChart.scss";
 
-
 const COLORS = ["#00c49f", "#8884d8", "#ffc658"]; // Banca, Liquidità, Altri
 
 const CapitalePieChart = ({ contoBancario, liquidita, altriFondi }) => {
@@ -39,9 +38,6 @@ const CapitalePieChart = ({ contoBancario, liquidita, altriFondi }) => {
             outerRadius={80}
             fill="#8884d8"
             dataKey="value"
-            label={({ name, percent }) =>
-              `${name} (${(percent * 100).toFixed(0)}%)`
-            }
           >
             {data.map((_, index) => (
               <Cell
