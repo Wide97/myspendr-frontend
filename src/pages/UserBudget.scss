@@ -2,28 +2,35 @@
 @import "../styles/mixins.scss";
 
 .user-budget {
-    padding-top: 2rem;
+    padding: $spacing-2xl $spacing-4xl;
 
     h2 {
-        margin-bottom: 2rem;
-        font-size: 2rem;
+        margin-bottom: $spacing-lg;
+        font-size: $font-size-h2;
         color: $color-primary;
+        text-align: center;
     }
 
     .form-section {
         @include flex-column-center;
         gap: $spacing-md;
-        margin-bottom: 2rem;
+        margin-bottom: $spacing-lg;
 
         select,
         input {
             padding: $spacing-sm;
-            font-size: 1rem;
+            font-size: $font-size-body;
             border-radius: $radius-md;
             background-color: $color-bg-surface;
             color: $color-text-main;
             border: 1px solid $color-border;
             width: 200px;
+            transition: border 0.2s ease, background-color 0.2s ease;
+
+            &:focus {
+                border-color: $color-primary;
+                outline: none;
+            }
         }
     }
 
@@ -65,7 +72,7 @@
     }
 
     .budget-bar-chart-wrapper {
-        margin-top: 3rem;
+        margin-top: $spacing-2xl;
         background-color: $color-bg-surface;
         padding: $spacing-lg;
         border-radius: $radius-lg;
