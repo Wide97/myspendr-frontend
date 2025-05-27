@@ -20,27 +20,50 @@
       margin-top: $spacing-xs;
     }
 
-    .dashboard-monthly-summary {
-      display: flex;
-      justify-content: center;
-      gap: $spacing-md;
-      margin-top: $spacing-sm;
-      flex-wrap: wrap;
+    .dashboard-barcharts {
+      margin-top: $spacing-2xl;
+      padding: $spacing-lg;
+      box-shadow: $shadow-heavy;
 
-      span {
-        font-size: $font-size-subtext;
+      h2 {
+        text-align: center;
+        color: $color-text-heading;
+        font-size: $font-size-h3;
+        margin-bottom: $spacing-lg;
+      }
+
+      .recharts-wrapper {
+        margin: 0 auto;
+        max-width: 100%;
+      }
+
+      .recharts-tooltip-wrapper {
+        padding: $spacing-sm;
         color: $color-text-main;
-        padding: $spacing-xs $spacing-sm;
+        font-size: $font-size-subtext;
+        box-shadow: $shadow-light;
+        border: 1px solid $color-border;
+      }
 
+      .recharts-legend-item text {
+        fill: $color-text-main !important;
+        font-size: $font-size-small;
+      }
+
+      .recharts-cartesian-axis-tick text {
+        fill: $color-text-muted;
+        font-size: $font-size-small;
+      }
+
+      .mt-5 {
+        margin-top: $spacing-2xl;
       }
 
       @include respond-to(sm) {
-        flex-direction: column;
-        align-items: center;
+        padding: $spacing-md;
 
-        span {
-          width: 100%;
-          margin-bottom: $spacing-xs;
+        h2 {
+          font-size: $font-size-h4;
         }
       }
     }
@@ -83,7 +106,7 @@
       gap: $spacing-sm;
       margin-top: $spacing-md;
 
-      >* {
+      > * {
         margin: $spacing-xs;
       }
     }

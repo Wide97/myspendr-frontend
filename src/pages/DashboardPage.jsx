@@ -7,7 +7,10 @@ import {
   getMovimentiByRange,
 } from "../utils/dashUtils";
 import { getProfilo } from "../utils/profiloApi";
-import { getTotaleEntrateUltimoMese, getTotaleUsciteUltimoMese } from "../utils/inOutMens";
+import {
+  getTotaleEntrateUltimoMese,
+  getTotaleUsciteUltimoMese,
+} from "../utils/inOutMens";
 import InfoCard from "../components/InfoCard";
 import PieChartExpenses from "../components/PieChartExpenses";
 import DateRangePicker from "../components/DateRangePicker";
@@ -16,6 +19,7 @@ import "./DashboardPage.scss";
 import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
 import TelegramQR from "../components/TelegramQR";
+import BarChartMovimenti from "../components/BarChartMovimenti";
 
 const DashboardPage = () => {
   const { capitale, setCapitale } = useCapitale();
@@ -25,8 +29,7 @@ const DashboardPage = () => {
   const [filteredMovimenti, setFilteredMovimenti] = useState([]);
   const [profilo, setProfilo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [entrateMese, setEntrateMese] = useState(0);
-  const [usciteMese, setUsciteMese] = useState(0);
+
 
   const today = new Date().toLocaleDateString();
 
@@ -41,7 +44,11 @@ const DashboardPage = () => {
           setCapitale(capitaleData);
         }
 
-        const [entrateTot, usciteTot, movimentiData, entrateUltimoMese, usciteUltimoMese] = await Promise.all([
+        const [
+          entrateTot,
+          usciteTot,
+          movimentiData,
+        ] = await Promise.all([
           getTotaleEntrate(),
           getTotaleUscite(),
           getTuttiIMovimenti(),
@@ -52,8 +59,6 @@ const DashboardPage = () => {
         setEntrate(entrateTot);
         setUscite(usciteTot);
         setMovimenti(movimentiData);
-        setEntrateMese(entrateUltimoMese);
-        setUsciteMese(usciteUltimoMese);
       } catch (error) {
         console.error("Errore nel caricamento dati:", error);
       } finally {
@@ -62,6 +67,7 @@ const DashboardPage = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRangeFilter = async (start, end) => {
@@ -90,10 +96,13 @@ const DashboardPage = () => {
           <h1>Ciao, {profilo?.nome || "Utente"} 👋</h1>
           <p className="data">{today}</p>
 
-          <div className="dashboard-monthly-summary">
-            <span>📈 Entrate questo mese: {entrateMese}€</span>
-            <span>📉 Uscite questo mese: {usciteMese}€</span>
-          </div>
+          <section className="dashboard-barcharts">
+            <h2>Entrate per Categoria</h2>
+            <BarChartMovimenti movimenti={movimenti} tipo="ENTRATA" />
+
+            <h2 className="mt-5">Uscite per Categoria</h2>
+            <BarChartMovimenti movimenti={movimenti} tipo="USCITA" />
+          </section>
         </header>
 
         <section className="dashboard-cards">
@@ -129,7 +138,8 @@ const DashboardPage = () => {
                 <ul>
                   {filteredMovimenti.map((mov) => (
                     <li key={mov.id}>
-                      <strong>{mov.categoria}</strong> - {mov.importo}€ ({mov.data})
+                      <strong>{mov.categoria}</strong> - {mov.importo}€ (
+                      {mov.data})
                     </li>
                   ))}
                 </ul>
