@@ -2,9 +2,8 @@
 @import "../styles/mixins.scss";
 
 .profilo-container {
-  padding: $spacing-xl;
+  padding: $spacing-xl $spacing-4xl;
   max-width: 800px;
-  margin: $spacing-2xl auto;
 
   h2,
   h3 {
