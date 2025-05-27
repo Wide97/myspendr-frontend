@@ -15,12 +15,9 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div
         style={{
-          backgroundColor: "#1e1e1e",
-          borderRadius: "8px",
           padding: "6px 10px",
           color: "#fff",
           fontSize: "0.75rem",
-          border: "1px solid #333",
         }}
       >
         {payload[0].payload.giorno ? (
@@ -37,12 +34,14 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const InfoCardWithChart = ({ label, value, icon, chartType, chartData }) => {
+  if (!chartData || chartData.length === 0) return null;
+
   return (
     <div className="info-card-chart">
       <div className="top">
         <span className="icon">{icon}</span>
         <span className="label">{label}</span>
-        <span className="value">{value}€</span>
+        <span className="value">{(value || 0).toFixed(2)}€</span>
       </div>
 
       <div className="chart-preview">

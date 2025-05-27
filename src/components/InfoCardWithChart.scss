@@ -1,0 +1,74 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.info-card-chart {
+  background-color: $color-bg-surface;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-light;
+  width: 100%;
+  max-width: 260px;
+  color: $color-text-main;
+  font-family: $font-primary;
+  transition: transform 0.2s ease;
+  @include flex-column-center;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-sm;
+
+    .icon {
+      font-size: 1.6rem;
+    }
+
+    .label {
+      font-size: $font-size-small;
+      color: $color-text-muted;
+      font-weight: $font-weight-semibold;
+    }
+
+    .value {
+      font-size: $font-size-body;
+      font-weight: $font-weight-bold;
+      color: $color-text-main;
+    }
+  }
+
+  .chart-preview {
+    width: 100%;
+    height: 60px;
+
+    .recharts-tooltip-wrapper {
+      z-index: 10;
+    }
+
+    .recharts-tooltip-label {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+    }
+
+    .recharts-tooltip-item {
+      font-size: $font-size-xs;
+    }
+  }
+
+  @include respond-to(sm) {
+    max-width: 100%;
+    .top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-xs;
+    }
+
+    .value {
+      align-self: flex-end;
+    }
+  }
+}
