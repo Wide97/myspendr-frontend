@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { apiFetch } from "../../utils/apiFetch";
+import { setBudget, getBudget, getTuttiIBudget } from "../utils/budget"; 
 import Button from "../components/Button";
 import InfoCard from "../components/InfoCard";
 import Loader from "../components/Loader";
@@ -30,7 +29,7 @@ const UserBudget = () => {
   const fetchBudget = async () => {
     try {
       setLoading(true);
-      const res = await apiFetch(`/budget/info?categoria=${categoria}&mese=${mese}&anno=${anno}`);
+      const res = await getBudget(categoria, mese, anno); 
       setBudgetInfo(res);
     } catch (err) {
       setToast({ message: "Errore nel caricamento", type: "error" });
@@ -41,7 +40,7 @@ const UserBudget = () => {
 
   const fetchTuttiIBudget = async () => {
     try {
-      const res = await apiFetch(`/budget/all?mese=${mese}&anno=${anno}`);
+      const res = await getTuttiIBudget(mese, anno); 
       setBudgetTotale(res);
     } catch (err) {
       setToast({ message: "Errore nei dati del grafico", type: "error" });
@@ -50,7 +49,7 @@ const UserBudget = () => {
 
   const handleSalva = async () => {
     try {
-      await apiFetch("/budget/set", "POST", { categoria, limite: parseFloat(limite), mese, anno });
+      await setBudget({ categoria, limite: parseFloat(limite), mese, anno }); 
       setToast({ message: "✅ Budget salvato con successo", type: "success" });
       fetchBudget();
       fetchTuttiIBudget();
