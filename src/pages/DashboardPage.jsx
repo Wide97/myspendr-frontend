@@ -152,7 +152,12 @@ const DashboardPage = () => {
             chartData={uscite}
           />
 
-          <InfoCard label="Saldo Netto" value={saldoNetto} icon="🧾" />
+          <InfoCardWithChart
+           label="Saldo Netto"
+           value={saldoNetto}
+           icon="🧾"
+           chartType="area"
+           chartData={saldoNetto} />
         </section>
 
         <section className="dashboard-telegram">
