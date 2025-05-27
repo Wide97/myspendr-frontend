@@ -3,7 +3,7 @@
 
 .capitale-movimento-page {
   padding: $spacing-2xl;
-  margin: 0 auto;
+  margin: 0 $spacing-4xl;
 
   h2 {
     margin-bottom: $spacing-md;
@@ -82,7 +82,6 @@
 
   .capitale-valori {
     margin: $spacing-xl auto;
-    padding: $spacing-lg;
     max-width: 600px;
     text-align: center;
     @include flex-column-center;
