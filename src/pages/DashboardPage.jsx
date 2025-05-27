@@ -20,6 +20,7 @@ import UserNavbar from "./UserNavbar";
 import { useCapitale } from "../context/CapitaleContext";
 import TelegramQR from "../components/TelegramQR";
 import BarChartMovimenti from "../components/BarChartMovimenti";
+import InfoCardWithChart from "../components/InfoCardWithChart";
 
 const DashboardPage = () => {
   const { capitale, setCapitale } = useCapitale();
@@ -112,13 +113,13 @@ const DashboardPage = () => {
           <p className="data">{today}</p>
 
           <section className="dashboard-barcharts">
-            <h2>Entrate per Categoria</h2>
+            <h2>Entrate mensili per Categoria</h2>
             <BarChartMovimenti
               movimenti={getMovimentiDelMese(movimenti)}
               tipo="ENTRATA"
             />
 
-            <h2 className="mt-5">Uscite per Categoria</h2>
+            <h2 className="mt-5">Uscite mensili per Categoria</h2>
             <BarChartMovimenti
               movimenti={getMovimentiDelMese(movimenti)}
               tipo="USCITA"
@@ -127,9 +128,30 @@ const DashboardPage = () => {
         </header>
 
         <section className="dashboard-cards">
-          <InfoCard label="Capitale Totale" value={capitaleTotale} icon="💰" />
-          <InfoCard label="Entrate Totali" value={entrate} icon="📈" />
-          <InfoCard label="Uscite Totali" value={uscite} icon="📉" />
+          <InfoCardWithChart
+            label="Capitale Totale"
+            value={capitaleTotale}
+            icon="💰"
+            chartType="radial"
+            chartData={capitale}
+          />
+
+          <InfoCardWithChart
+            label="Entrate Totali"
+            value={entrate}
+            icon="📈"
+            chartType="area"
+            chartData={entrate}
+          />
+
+          <InfoCardWithChart
+            label="Uscite Totali"
+            value={uscite}
+            icon="📉"
+            chartType="bar"
+            chartData={uscite}
+          />
+
           <InfoCard label="Saldo Netto" value={saldoNetto} icon="🧾" />
         </section>
 
