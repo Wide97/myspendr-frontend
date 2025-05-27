@@ -46,6 +46,42 @@ const DashboardPage = () => {
     });
   };
 
+  const getAreaDataEntrate = (movimenti) => {
+    const filtrati = movimenti.filter((m) => m.tipo === "ENTRATA");
+    const ultimi7 = filtrati.slice(-7); // ultimi 7 movimenti
+
+    return ultimi7.map((m) => ({
+      giorno: new Date(m.data).toLocaleDateString("it-IT", {
+        weekday: "short",
+      }),
+      valore: m.importo,
+    }));
+  };
+
+  const getBarDataUscite = (movimenti) => {
+    const filtrati = movimenti.filter((m) => m.tipo === "USCITA");
+    const ultimi7 = filtrati.slice(-7);
+
+    return ultimi7.map((m) => ({
+      giorno: new Date(m.data).toLocaleDateString("it-IT", {
+        weekday: "short",
+      }),
+      valore: m.importo,
+    }));
+  };
+
+  const getSaldoData = (entrateData, usciteData) => {
+    return entrateData.map((e, i) => ({
+      giorno: e.giorno,
+      valore: e.valore - (usciteData[i]?.valore || 0),
+    }));
+  };
+
+  const getRadialData = (capitaleTotale, obiettivo = 5000) => {
+    const percentuale = Math.min(100, (capitaleTotale / obiettivo) * 100);
+    return [{ nome: "Totale", valore: Math.round(percentuale) }];
+  };
+
   const today = new Date().toLocaleDateString();
 
   useEffect(() => {
@@ -103,6 +139,10 @@ const DashboardPage = () => {
   const saldoNetto = entrate - uscite;
   // eslint-disable-next-line no-unused-vars
   const saldoMese = entrateMese - usciteMese;
+  const entrateData = getAreaDataEntrate(movimenti);
+  const usciteData = getBarDataUscite(movimenti);
+  const saldoData = getSaldoData(entrateData, usciteData);
+  const radialData = getRadialData(capitaleTotale);
 
   return (
     <>
@@ -133,7 +173,7 @@ const DashboardPage = () => {
             value={capitaleTotale}
             icon="💰"
             chartType="radial"
-            chartData={capitale}
+            chartData={radialData}
           />
 
           <InfoCardWithChart
@@ -141,7 +181,7 @@ const DashboardPage = () => {
             value={entrate}
             icon="📈"
             chartType="area"
-            chartData={entrate}
+            chartData={entrateData}
           />
 
           <InfoCardWithChart
@@ -149,15 +189,16 @@ const DashboardPage = () => {
             value={uscite}
             icon="📉"
             chartType="bar"
-            chartData={uscite}
+            chartData={usciteData}
           />
 
           <InfoCardWithChart
-           label="Saldo Netto"
-           value={saldoNetto}
-           icon="🧾"
-           chartType="area"
-           chartData={saldoNetto} />
+            label="Saldo Netto"
+            value={saldoNetto}
+            icon="🧾"
+            chartType="area"
+            chartData={saldoData}
+          />
         </section>
 
         <section className="dashboard-telegram">
