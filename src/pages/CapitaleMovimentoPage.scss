@@ -81,14 +81,14 @@
   }
 
   .capitale-valori {
-    margin: $spacing-xl;
+    margin: $spacing-xl auto;
     max-width: 600px;
     text-align: center;
     @include flex-column-center;
 
     .capitale-pie-chart {
       width: 100%;
-      height: auto;
+      height: 250px;
       margin-bottom: $spacing-md;
     }
 

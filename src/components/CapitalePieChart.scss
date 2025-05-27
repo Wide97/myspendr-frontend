@@ -30,6 +30,7 @@
   .recharts-legend-wrapper {
     font-size: $font-size-small;
     color: $color-text-muted;
+    padding: $spacing-md auto;
   }
 
   svg text {
