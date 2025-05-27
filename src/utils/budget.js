@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiFetch";
+import { apiFetch } from "./api";
 
 // 📤 Imposta o aggiorna il budget per una categoria
 export async function setBudget({ categoria, limite, mese, anno }) {
