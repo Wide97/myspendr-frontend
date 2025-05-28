@@ -5,6 +5,8 @@ import {
   fetchTotaleEntrate,
   fetchTotaleUscite,
 } from "../utils/movimentiUtils";
+import { downloadReportPDF, downloadReportExcel } from "../utils/report"; // o dove hai salvato il file
+
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 import Toast from "../components/Toast";
@@ -97,6 +99,22 @@ const MovimentiPage = () => {
     }
   };
 
+  const handleDownloadPdf = () => {
+    const mese = today.getMonth() + 1; // getMonth() parte da 0
+    const anno = today.getFullYear();
+    downloadReportPDF(mese, anno).catch((err) =>
+      setToast({ message: err.message, type: "error" })
+    );
+  };
+
+  const handleDownloadExcel = () => {
+    const mese = today.getMonth() + 1;
+    const anno = today.getFullYear();
+    downloadReportExcel(mese, anno).catch((err) =>
+      setToast({ message: err.message, type: "error" })
+    );
+  };
+
   useEffect(() => {
     if (
       capitale &&
@@ -149,6 +167,15 @@ const MovimentiPage = () => {
                 chartType="bar"
                 chartData={usciteData}
               />
+            </div>
+
+            <div className="report-buttons">
+              <Button onClick={handleDownloadPdf} variant="primary">
+                📄 Scarica PDF
+              </Button>
+              <Button onClick={handleDownloadExcel} variant="secondary">
+                📊 Scarica Excel
+              </Button>
             </div>
 
             {movimenti.length === 0 ? (
