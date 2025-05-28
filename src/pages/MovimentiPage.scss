@@ -119,10 +119,18 @@
             border-radius: $radius-md;
           }
         }
-
       }
-
     }
   }
 
+  .report-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: $spacing-2xl 0;
+
+    .btn {
+      min-width: 160px;
+    }
+  }
 }
